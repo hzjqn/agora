@@ -1,5 +1,5 @@
 <?php
-    $projectName = "ágora";
+    $projectName = "ágora: explora. expresa. se parte.";
 ?>
 
 <!DOCTYPE html>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-md-4">    
                         <article>
-                            <h2>Expresate.</h2>
+                            <h2>Expresa.</h2>
                             <p>
                             <strong>Escribí, edita y publica</strong> tus propias notas. <strong>Compartí</strong> tus inquietudes, problemas, desafíos u opiniones con el mundo. Y encontrá <strong>seguidores</strong> y/o <strong>patrocinadores</strong>.
                             </p>

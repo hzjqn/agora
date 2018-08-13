@@ -341,7 +341,7 @@ section{
     justify-content: flex-end;
     flex-direction: column;
     height: 100vh;
-    background: url(../img/header-background.png);
+    background: url(../img/header-background.png) fixed;
     background-size: cover;
     background-position: 65% 0%;
     color: $_white;
@@ -360,10 +360,9 @@ section{
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
-    height: 65vh;
     background: url(../img/header-background.png);
     background-size: cover;
-    background-position: 65% 0%;
+    background-position: 65% 25%;
     color: $_white;
     text-align: left;
 
@@ -374,7 +373,6 @@ section{
             
             img{
                 display: block;
-                vertical-align: middle;
                 width: 128px;
             }
         }
@@ -389,7 +387,7 @@ section{
     min-height: 50vh;
     
     article{
-        padding: 32px 4em;
+        padding: 32px 1em;
         h2{
             color: $_mainc;
         }
@@ -425,8 +423,12 @@ section{
     }
 
     a{
-        font-size: 24px;
+        display: inline-block;
+        font-size: 1.1em;
         color: $_white;
+        border-radius: 8px;
+        padding: .5em 1em;
+        border: 3px solid $_white;
     }
 }
 
@@ -526,6 +528,21 @@ footer{
                         }
                     }
                 }
+            }
+        }
+    }
+    
+        
+    #preguntas{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 50vh;
+        
+        article{
+            padding: 32px 3em;
+            h2{
+                color: $_mainc;
             }
         }
     }

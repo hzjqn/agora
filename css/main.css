@@ -247,7 +247,7 @@ section {
   justify-content: flex-end;
   flex-direction: column;
   height: 100vh;
-  background: url(../img/header-background.png);
+  background: url(../img/header-background.png) fixed;
   background-size: cover;
   background-position: 65% 0%;
   color: #fff;
@@ -261,10 +261,9 @@ section {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  height: 65vh;
   background: url(../img/header-background.png);
   background-size: cover;
-  background-position: 65% 0%;
+  background-position: 65% 25%;
   color: #fff;
   text-align: left; }
   #faq-header article h2 {
@@ -272,7 +271,6 @@ section {
     font-size: 24px; }
     #faq-header article h2 img {
       display: block;
-      vertical-align: middle;
       width: 128px; }
 
 #preguntas {
@@ -281,7 +279,7 @@ section {
   align-items: center;
   min-height: 50vh; }
   #preguntas article {
-    padding: 32px 4em; }
+    padding: 32px 1em; }
     #preguntas article h2 {
       color: #0098ff; }
 
@@ -304,8 +302,12 @@ section {
     color: #fff;
     font-size: 18px; }
   #join a {
-    font-size: 24px;
-    color: #fff; }
+    display: inline-block;
+    font-size: 1.1em;
+    color: #fff;
+    border-radius: 8px;
+    padding: .5em 1em;
+    border: 3px solid #fff; }
 
 footer {
   display: flex;
@@ -373,6 +375,16 @@ footer {
           nav.navbar .nav-list ul li.reg a:hover {
             color: white;
             background: #0098ff; }
+
+  #preguntas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh; }
+    #preguntas article {
+      padding: 32px 3em; }
+      #preguntas article h2 {
+        color: #0098ff; }
 
   header {
     text-align: left; }
