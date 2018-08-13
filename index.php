@@ -54,7 +54,7 @@
                 <div class="container">
                     <div class="col-md-4">
                         <article>
-                            <h2>Explorá notas</h2>
+                            <h2>Explorá.</h2>
                             <p>
                                 Navegá <strong>noticias</strong>, <strong>notas de opinión</strong>, <strong>blogs</strong> y mucho más. Indicá qué artículos te parecen <strong>útiles</strong> y cuanto <strong>respetas</strong> a una fuente.
                             </p>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="col-md-4">    
                         <article>
-                            <h2>Expresate</h2>
+                            <h2>Expresate.</h2>
                             <p>
                             <strong>Escribí, edita y publica</strong> tus propias notas. <strong>Compartí</strong> tus inquietudes, problemas, desafíos u opiniones con el mundo. Y encontrá <strong>seguidores</strong> y/o <strong>patrocinadores</strong>.
                             </p>
@@ -70,7 +70,7 @@
                     </div>
                     <div class="col-md-4">
                         <article>
-                            <h2>Se parte de la comunidad</h2>
+                            <h2>Se parte.</h2>
                             <p>
                             Armá <strong>colecciones</strong> y <strong>archiva</strong> tus notas preferidas, seguí a tus autores <strong>favoritos</strong> y recibí notificaciones cuando estos publican contenido!
                             </p>

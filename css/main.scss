@@ -1,19 +1,21 @@
 // imports
+// Fonts
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700');
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|PT+Serif:400,700');
 
-// Measures
+// Medidas
 $_navbar_height: 64px;
 $_navbar_max_height: 448px;
 $_margin_root: 8px;
 
-// Color
+// Colores
 $_lightgrey: #EBEBEB;
 $_grey: #aaa;
 $_darkgrey: #123;
 $_white: #fff;
 $_black: #323232;
 $_mainc: #0098ff;
+$_goodgreen: #95ee7a;
 
 // Mixins
 @mixin user-select-none($value){
@@ -23,7 +25,7 @@ $_mainc: #0098ff;
 	-ms-user-select: $value;	
 }
 
-// BEM
+// Contenedores
 
 .container, .nav-container{
     width: 100%;
@@ -31,7 +33,7 @@ $_mainc: #0098ff;
     overflow: auto;
 }
 
-// Column system
+// Sistema de columnas
 
 .col-1{
     width: 8.33333%;
@@ -118,6 +120,8 @@ $_mainc: #0098ff;
 }
 
 
+
+// Selectores generales
 *{
 	box-sizing: border-box;
 }
@@ -133,9 +137,10 @@ body{
     color: $_black;
 }
 
+// Links globales
 a{
     text-decoration: none;
-    
+
     &:link, &:visited{
         color: $_mainc;
     }
@@ -144,6 +149,8 @@ a{
         color: darken($color: $_mainc, $amount: 15)
     }
 }
+
+// Logo
 h1.logo{
     margin: 0px;
     font-size: 16px;
@@ -169,6 +176,7 @@ h1.logo{
     }
 }
 
+// Navbar (Barra de navegacion superior)
 nav.navbar{
     position: fixed;
     width: 100%;
@@ -215,12 +223,14 @@ nav.navbar{
             }
         }
     }
+
+    // Parte desplegable (Solo mobile)
     .nav-list{
         background: $_white;
         overflow: hidden;
         height: auto;
-        max-height: 0px;
-        transition: max-height .25s ease-in-out;
+        max-height: 0px; // Este atributo es 0 si el navbar no tiene la clase "open".
+        transition: max-height .25s ease-in-out; // Se anima la variable max-height.
 
         ul{
             margin: 0px;
@@ -244,7 +254,7 @@ nav.navbar{
         }
 
         &.open{
-            max-height: $_navbar_max_height;
+            max-height: $_navbar_max_height; // Con la clase 'open', este elemento tiene 448px de alto.
         }
     }
 }
@@ -261,12 +271,74 @@ section{
     }
 }
 
+#login{
+    padding: 128px 0px;
+    background: url(../img/login-background.jpg);
+    background-size: cover;
+    background-position: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    #login-form{
+        width: 100%;
+        max-width: 360px;
+        padding: 2em;
+        border-radius: 16px;
+        background-color: $_white;
+
+        p.desc{
+            text-align: center;
+            font-size: .75em;
+
+            &:last-child{
+                margin-bottom: 0px;
+            }
+        }
+
+        input[type="text"], input[type="password"]{
+            outline: none;
+            background: transparent;
+            width: 100%;
+            border: 1px solid $_mainc;
+            padding: .5em;
+            border-radius: 8px;
+            font-size: 18px;
+            margin: 16px 0px;
+
+            &:focus{
+                border-color: lighten($color: $_mainc, $amount: 15)
+            }
+        }
+
+        input[type="submit"]{
+            color: darken($_goodgreen, 50);
+            display: block;
+            margin-top: 32px;
+            padding: 16px 32px;
+            width: 100%;
+            border-radius: 8px;
+            background: $_goodgreen;
+            font-size: 18px;
+            border: none;
+            outline: none;
+
+            &:hover{
+                background: lighten($_goodgreen, 5);
+            }
+            &:focus{
+                background: darken($_goodgreen, 5);
+            }
+        }
+    }
+}
+
 
 #landing-header{
     display: flex;
     justify-content: flex-end;
     flex-direction: column;
-    height: 65vh;
+    height: 100vh;
     background: url(../img/header-background.png);
     background-size: cover;
     background-position: 65% 0%;
@@ -314,12 +386,9 @@ section{
     min-height: 50vh;
     
     article{
-        padding: 32px 0px;
+        padding: 32px 4em;
         h2{
             color: $_mainc;
-        }
-        p{
-            font-style: italic;
         }
     }
 }
@@ -385,10 +454,12 @@ footer{
 }
 
 
-
+// Query para mobile [xs]
 @media screen and (min-width: 360px){
 }
 
+
+// Query para mobile y tablets [sm]
 @media screen and (min-width: 480px){
     nav.navbar{
         position: fixed;
@@ -476,7 +547,7 @@ footer{
     }
 }
 
-
+// Query para tablet y desktop pequeños [md]
 @media screen and (min-width: 678px){
     .container{
         margin: 0 auto;
@@ -488,12 +559,8 @@ footer{
         float: left;
     }
 }
-@media screen and (min-width: 992px){
-    .container{
-        margin: 0 auto;
-    }
-}
 
+// Query para desktops [lg]
 @media screen and (min-width: 1200px){
     .container{
         margin: 0 auto;

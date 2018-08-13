@@ -193,11 +193,58 @@ section {
   section.centered {
     text-align: center; }
 
+#login {
+  padding: 128px 0px;
+  background: url(../img/login-background.jpg);
+  background-size: cover;
+  background-position: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
+  #login #login-form {
+    width: 100%;
+    max-width: 360px;
+    padding: 2em;
+    border-radius: 16px;
+    background-color: #fff; }
+    #login #login-form p.desc {
+      text-align: center;
+      font-size: .75em; }
+      #login #login-form p.desc:last-child {
+        margin-bottom: 0px; }
+    #login #login-form input[type="text"], #login #login-form input[type="password"] {
+      outline: none;
+      background: transparent;
+      width: 100%;
+      border: 1px solid #0098ff;
+      padding: .5em;
+      border-radius: 8px;
+      font-size: 18px;
+      margin: 16px 0px; }
+      #login #login-form input[type="text"]:focus, #login #login-form input[type="password"]:focus {
+        border-color: #4db7ff; }
+    #login #login-form input[type="submit"] {
+      color: #1f5d0c;
+      display: block;
+      margin-top: 32px;
+      padding: 16px 32px;
+      width: 100%;
+      border-radius: 8px;
+      background: #95ee7a;
+      font-size: 18px;
+      border: none;
+      outline: none; }
+      #login #login-form input[type="submit"]:hover {
+        background: #a7f191; }
+      #login #login-form input[type="submit"]:focus {
+        background: #83eb63; }
+
 #landing-header {
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
-  height: 65vh;
+  height: 100vh;
   background: url(../img/header-background.png);
   background-size: cover;
   background-position: 65% 0%;
@@ -231,11 +278,9 @@ section {
   align-items: center;
   min-height: 50vh; }
   #preguntas article {
-    padding: 32px 0px; }
+    padding: 32px 4em; }
     #preguntas article h2 {
       color: #0098ff; }
-    #preguntas article p {
-      font-style: italic; }
 
 #features {
   display: flex;
@@ -346,9 +391,6 @@ footer {
     padding: 1em;
     width: 33%;
     float: left; } }
-@media screen and (min-width: 992px) {
-  .container {
-    margin: 0 auto; } }
 @media screen and (min-width: 1200px) {
   .container {
     margin: 0 auto;
