@@ -47,14 +47,18 @@
         <section id="login">
             <!-- FORMULARIO DE REGISTRO -->
             <form method="post" id="login-form">
-                <input type="text" name="name" placeholder="Nombre">                
-                <input type="text" name="lastname" placeholder="Apellidos">
+                <label for="name">Nombre</label>
+                <input type="text" name="name" placeholder="María">
+                
+                <label for="lastname">Apellidos</label>
+                <input type="text" name="lastname" placeholder="Gonzalez">
                 <p class="desc">
                     Tu nombre y apellidos sera como firmaras tus notas y comentarios.
                 </p>
-                <input type="text" name="username" placeholder="Usuario">
+                <label for="lastname">Nombre de Usuarie</label>
+                <input type="text" name="username" placeholder="margonzalez92">
                 <p class="desc">
-                    Tu link de agora sera: <strong>username</strong>.agora.online/</strong>
+                    Tu link de agora sera: <strong>usuarie</strong>.agora.online/</strong>
                 </p>
                 <input type="text" name="email" placeholder="Correo electrónico">
                 <p class="desc">
