@@ -341,7 +341,8 @@ section{
     justify-content: flex-end;
     flex-direction: column;
     height: 100vh;
-    background: url(../img/header-background.png) fixed;
+    background: url(../img/header-background.png);
+    background-attachment: fixed;
     background-size: cover;
     background-position: 65% 0%;
     color: $_white;
@@ -453,7 +454,7 @@ footer{
         display: inline-block;
         width: 64px;
         vertical-align: middle;
-        margin: 0px 24px;
+        margin: 0px 24px 0px 0px;
     }
     background: $_black;
 }
