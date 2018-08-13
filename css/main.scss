@@ -281,10 +281,11 @@ section{
     justify-content: center;
     align-items: center;
     #login-form{
-        width: 100%;
+        width: auto;
         max-width: 360px;
         padding: 2em;
         border-radius: 16px;
+        margin: 0px 16px;
         background-color: $_white;
         font-size: .9em;
 
