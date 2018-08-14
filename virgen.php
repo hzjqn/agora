@@ -22,6 +22,6 @@
     include("./footer.php"); // Incluimos el footer (footer.php)
     include("./js.php"); // Incluimos el JavaScript global (js.php)
     ?>
-    <!-- SI SE QUIERE AGREGAR JAVASCRIPT HACERLO AQUI -->
+    <!-- SI SE QUIERE AGREGAR JAVASCRIPT HACERLO ACÁ -->
 </body> <!-- Estos tags se abren en "header.php" y los cerramos aca -->
 </html>
