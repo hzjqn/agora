@@ -24,23 +24,23 @@
                 
                 <label for="lastname">Apellidos</label>
                 <input type="text" name="lastname" placeholder="Gonzalez">
-                <p class="desc">
+                <p class="desc sans">
                     Tu nombre y apellidos sera como firmaras tus notas y comentarios.
                 </p>
                 <label for="username">Nombre de Usuarie</label>
                 <input type="text" name="username" placeholder="margonzalez92">
-                <p class="desc">
+                <p class="desc sans">
                     Tu link de agora sera: <strong>usuarie</strong>.agora.online/</strong>
                 </p>
                 <label for="email">Direccion de correo electronico</label>
                 <input type="text" name="email" placeholder="mgonzalez92@correo.com">
-                <p class="desc">
+                <p class="desc sans">
                     Asegurate de usar una direccion de correo electronico real, deberas confirmar tu cuenta.
                 </p>
                 <input type="password" name="password" placeholder="Contraseña">
                 <input type="password" name="password" placeholder="Confirmar Constraseña">
                 <input type="submit" value="Registrarse">
-                <p class="desc">
+                <p class="desc sans">
                     Si ya tienes una cuenta puedes <a href="login.php">Iniciar Sesión</a>
                 </p>
             </form>

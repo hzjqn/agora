@@ -21,6 +21,9 @@
                 <input type="password" name="password" placeholder="Contraseña">
                 <input type="checkbox" name="remember" value="true"><label for="remember">Recordar</label>
                 <input type="submit" value="Iniciar Sesión">
+                <p class="desc mt-4">
+                    <a href="recover.php">No recuerdo mi contraseña</a> | <a href="recover-email.php">No recuerdo mi usuario</a>
+                </p>
             </form>
         </section>
     </main>

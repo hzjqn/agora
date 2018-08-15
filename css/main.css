@@ -24,8 +24,11 @@ h6 {
   font-family: 'Open Sans', sans-serif;
   font-weight: 200; }
 
-p {
+.serif {
   font-family: 'PT Serif', serif; }
+
+.sans {
+  font-family: 'Open Sans', sans-serif; }
 
 h1.logo {
   margin: 0px;
@@ -75,7 +78,7 @@ h1.logo {
 section {
   padding: 64px 0px; }
 
-#login {
+#login, #register {
   padding: 128px 0px;
   background: url(../img/login-background.jpg);
   background-size: cover;
@@ -84,7 +87,7 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center; }
-  #login #login-form {
+  #login form, #register form {
     width: auto;
     max-width: 360px;
     padding: 2em;
@@ -92,12 +95,15 @@ section {
     margin: 0px 16px;
     background-color: #fff;
     font-size: .9em; }
-    #login #login-form p.desc {
+    #login form p.desc, #register form p.desc {
       text-align: center;
       font-size: .75em; }
-      #login #login-form p.desc:last-child {
+      #login form p.desc:last-child, #register form p.desc:last-child {
         margin-bottom: 0px; }
-    #login #login-form input[type="text"], #login #login-form input[type="password"] {
+    #login form label, #register form label {
+      font-weight: 600;
+      font-size: .8em; }
+    #login form input[type="text"], #login form input[type="password"], #register form input[type="text"], #register form input[type="password"] {
       outline: none;
       background: transparent;
       width: 100%;
@@ -105,10 +111,10 @@ section {
       padding: .5em;
       border-radius: 8px;
       font-size: 1.1em;
-      margin: 16px 0px; }
-      #login #login-form input[type="text"]:focus, #login #login-form input[type="password"]:focus {
+      margin: 0px 0px 16px; }
+      #login form input[type="text"]:focus, #login form input[type="password"]:focus, #register form input[type="text"]:focus, #register form input[type="password"]:focus {
         border-color: #4db7ff; }
-    #login #login-form input[type="submit"] {
+    #login form input[type="submit"], #register form input[type="submit"] {
       color: #1f5d0c;
       display: block;
       margin-top: 32px;
@@ -119,14 +125,14 @@ section {
       font-size: 18px;
       border: none;
       outline: none; }
-      #login #login-form input[type="submit"]:hover {
+      #login form input[type="submit"]:hover, #register form input[type="submit"]:hover {
         background: #a7f191; }
-      #login #login-form input[type="submit"]:focus {
+      #login form input[type="submit"]:focus, #register form input[type="submit"]:focus {
         background: #83eb63; }
 
 #landing-header {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: column;
   height: 100vh;
   background: url(../img/header-background.png);

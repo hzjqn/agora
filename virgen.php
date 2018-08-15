@@ -1,5 +1,5 @@
 <?php
-    $tituloPagina = "Ágora: Pagina Virgen"; // Esta variable cambia el titulo de la pagina
+    $tituloPagina = "Ágora: Pagina Virgen"; // Esta variable es el titulo de la pagina
 ?>
 <!DOCTYPE html>
 <html lang="en">
