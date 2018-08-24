@@ -56,6 +56,22 @@ h1.logo {
 .navbar-agora {
   background: #fff;
   border-bottom: 1px solid #EBEBEB; }
+  .navbar-agora ul > li > a.nav-link {
+    border: 2px solid transparent;
+    text-align: center; }
+    .navbar-agora ul > li > a.nav-link.reg {
+      display: block;
+      background-color: #fff;
+      border-color: #0098ff;
+      border-width: 2px;
+      border-style: solid;
+      color: #0098ff;
+      padding: .5em 1.25em;
+      border-radius: .5em;
+      transition: background .25s; }
+      .navbar-agora ul > li > a.nav-link.reg:hover {
+        background: #0098ff;
+        color: #fff; }
   .navbar-agora .navbar-toggler {
     color: #0098ff;
     position: relative;

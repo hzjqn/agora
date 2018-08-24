@@ -10,15 +10,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="./faq.php">FAQ</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="./login.php">Iniciar Sesión</a>
+                <a class="nav-link log" href="./login.php">Iniciar Sesión</a>
             </li>
             <li class="nav-item spacer">
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="./register.php">Registrarse</a>
+                <a class="nav-link reg" href="./register.php">Registrarse</a>
             </li>
         </ul>
     </div>

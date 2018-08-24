@@ -80,7 +80,7 @@
                         <article>
                             <center>     
                                 <p>
-                                    ¿Aún tenes dudas?  <a href="contacto.php">Contactate</a> con nosotros y pregunta lo que necesites.
+                                    ¿Aún tenes dudas?  <a href="mailto:contacto@agora.com.ar">Contactate</a> con nosotros y pregunta lo que necesites.
                                 </p>
                             </center>
                         </article>

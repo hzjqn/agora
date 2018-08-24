@@ -96,6 +96,27 @@ h1.logo{
     background: $_white;
     border-bottom: 1px solid $_lightgrey;
 
+    ul>li>a.nav-link{
+        border: 2px solid transparent;
+        text-align: center;
+        &.reg{
+            display: block;
+            background-color: $_white;
+            border-color: $_mainc;
+            border-width: 2px;
+            border-style: solid;
+            color: $_mainc;
+            padding: .5em 1.25em;
+            border-radius: .5em;
+            transition: background .25s;
+
+            &:hover{
+                background: $_mainc;
+                color: $_white;
+            }
+        }
+    }
+
     .navbar-toggler{
         color: $_mainc;
         position: relative;

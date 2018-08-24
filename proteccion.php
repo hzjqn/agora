@@ -1,49 +1,24 @@
 <?php
-    $projectName = "ágora | Preguntas Frecuentes";
+    $tituloPagina = "Ágora: Pagina Virgen"; // Esta variable es el titulo de la pagina
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= $projectName ?></title>
-    <link rel="stylesheet" href="css/main.css">
+    <?php        
+        include("./header.php");    // Incluimos el header (Tags html y head, incluyendo los archivos css) ver "header.php"
+                                    // Tambien ver http://php.net/manual/es/function.include.php
+    ?>
 </head>
 <body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-header">            
-                <div class="nav-container">
-                    <div class="logo">
-                        <h1 class="logo"><a href="index.php"><i class="agora-logo">Ágora</i></a></h1>
-                    </div>
-                    <button id="menuBtn">
-                        <i class="icon-bar"></i>
-                        <i class="icon-bar"></i>
-                        <i class="icon-bar"></i>
-                    </button>
-                </div>
-            </div>
-            <div id="navbarList" class="nav-list">
-                <div class="nav-container">
-                    <ul>
-                        <li class="login"><a href="login.php">Iniciar Sesión</a></li>
-                        <li class="spacer">o</a></li>
-                        <li class="reg"><a href="register.php">Registrarse</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>        
-    </div>
-    </nav>
-    
+    <?php include('./navbar.php'); ?> <!-- INCLUIMOS EL NAVBAR FIJO DE BOOTSTRAP(navbar.php) -->
+    <!-- Usamos tags semanticos -->
     <main>
-        <div class="container">
-                <h1> Indicaciones sobre proteccion de datos</h1>
+        <!-- SECCION LOGIN -->
+        <section> <!-- Idealmente usen un id para cada sección distinto, para darle estilos con css -->
+
+            <!-- Si se quiere alinear el texto con el resto usar un <div class="container"> de bootstrap -->
+            <div class="container">
+            <h1> Indicaciones sobre proteccion de datos</h1>
             <div>
             <ol>
             <li><strong>Proteccion de datos</strong><br>
@@ -58,17 +33,16 @@
 
         <br><strong>c.</strong> Usted no está obligado por ley ni contractualmente a cedernos sus datos de carácter personal. Por otro lado, es posible que determinadas funciones de nuestras páginas web dependan de la cesión de datos de carácter personal. En estos casos, si no desea cedernos sus datos de carácter personal, es posible que no pueda utilizar determinadas funciones, o que estas solo estén disponibles de forma limitada.</p>
 
-        </div>
+            </div> 
+
+        </section>
     </main>
-        <footer>
-        <div class="container">
-            <img src="img/isologo.white.svg" alt="Agora Logo">
-            <div class="footer-links">
-                <a href="faq.php">Preguntas Frecuentes</a> | <a href="help.php">Ayúda</a>
-            </div>
-        </div>
-    </footer>
-    <!-- TERMINA FOOTER -->
-    <script src="./js/main.js"></script>
-</body>
+    <!-- TERMINA MAIN -->
+    <?php
+    // include("./join.php"); // Incluimos el aside de recrutacion? Descomentar si = true;
+    include("./footer.php"); // Incluimos el footer (footer.php)
+    include("./js.php"); // Incluimos el JavaScript global (js.php)
+    ?>
+    <!-- SI SE QUIERE AGREGAR JAVASCRIPT HACERLO ACÁ -->
+</body> <!-- Estos tags se abren en "header.php" y los cerramos aca -->
 </html>
