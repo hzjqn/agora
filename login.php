@@ -3,13 +3,16 @@
     require_once './components/dataValidationComponent.php';
     require_once './components/userComponent.php';
 
+    $tituloPagina = "Ágora | Iniciar Sesion"; // Esta variable cambia el titulo de la pagina
+
     session_start();
     
-    if(isset($_SESSION['user'])){
-        var_dump($_SESSION);
-    }
+    if(isset($_SESSION['user']) && $_SESSION != null){
 
-    $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la pagina
+        header('Location: ./index.php');
+        session_destroy();
+        exit;
+    }
     
     if($_POST){    
         if((isset($_POST['username']) && $_POST['username'] != null) && (isset($_POST['password']) && $_POST['username'] != null)){
@@ -20,7 +23,9 @@
             $password = $_POST['password'];
 
             $errors = validateLogin($username, $password);
-        
+            
+            var_dump($errors);
+
             if(!$errors){
                 $user = getUser($username);
                 $_SESSION['user'] = $user;

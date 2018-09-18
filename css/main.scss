@@ -92,6 +92,7 @@ h1.logo{
     }
 }
 // Le añadimos una clase al navbar para ponerle los colores que queramos. 
+// Le añadimos una clase al navbar para ponerle los colores que queramos. 
 .navbar-agora{
     background: $_white;
     border-bottom: 1px solid $_lightgrey;
@@ -113,6 +114,55 @@ h1.logo{
             &:hover{
                 background: $_mainc;
                 color: $_white;
+            }
+        }
+    }
+
+    img.navbar-pp{
+        width: 48px;
+        height: 48px;
+        border: 3px solid $_lightgrey;
+        border-radius: 100%;
+        margin-left: .5em;
+    }
+
+    h2{
+        font-size: 18px;
+        margin: 0px;
+        padding: 0px;
+        display: inline;
+        vertical-align: middle;
+    }
+    form{
+        display: inline;
+        vertical-align: middle;
+        button{
+            margin: 0px 0px 0px .5em;
+            display: inline;
+            background: transparent;
+            color: $_mainc;
+            border: none;
+            border-radius: 100%;
+            padding: .5em .5em;
+            transition: background .25s;
+            padding: 0px;
+
+            i{
+                display: block;
+                vertical-align: middle;
+                padding: 15px;
+                font-size: 18px;
+                display: block;
+            }
+            outline: none;
+
+            &:hover, &:focus{
+                background: darken($color: white, $amount: 5)
+            }
+
+            &:active{
+                
+                background: darken($color: white, $amount: 15)
             }
         }
     }
@@ -142,7 +192,7 @@ h1.logo{
             }
         }
     }
-}
+} 
 
 // Estilos globales para las secciones
 section{

@@ -72,6 +72,42 @@ h1.logo {
       .navbar-agora ul > li > a.nav-link.reg:hover {
         background: #0098ff;
         color: #fff; }
+  .navbar-agora img.navbar-pp {
+    width: 48px;
+    height: 48px;
+    border: 3px solid #EBEBEB;
+    border-radius: 100%;
+    margin-left: .5em; }
+  .navbar-agora h2 {
+    font-size: 18px;
+    margin: 0px;
+    padding: 0px;
+    display: inline;
+    vertical-align: middle; }
+  .navbar-agora form {
+    display: inline;
+    vertical-align: middle; }
+    .navbar-agora form button {
+      margin: 0px 0px 0px .5em;
+      display: inline;
+      background: transparent;
+      color: #0098ff;
+      border: none;
+      border-radius: 100%;
+      padding: .5em .5em;
+      transition: background .25s;
+      padding: 0px;
+      outline: none; }
+      .navbar-agora form button i {
+        display: block;
+        vertical-align: middle;
+        padding: 15px;
+        font-size: 18px;
+        display: block; }
+      .navbar-agora form button:hover, .navbar-agora form button:focus {
+        background: #f2f2f2; }
+      .navbar-agora form button:active {
+        background: #d9d9d9; }
   .navbar-agora .navbar-toggler {
     color: #0098ff;
     position: relative;

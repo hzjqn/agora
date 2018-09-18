@@ -9,6 +9,7 @@
                 // Si el user coincide checkear password
                 if($founduser['username'] === $username){
                     // Si la contraseña no coincide error: passowrd
+
                     if(password_verify($password, $founduser['password'])){
                         $errors = [];
                     } else {

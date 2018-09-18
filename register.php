@@ -1,8 +1,9 @@
 <?php
-    $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la pagina
     require_once('./fn.php');
     require_once('./components/dataValidationComponent.php');
     require_once('./components/userComponent.php');
+    
+    $tituloPagina = "Ágora | Registrarse"; // Esta variable cambia el titulo de la pagina
 
 
     if($_POST){

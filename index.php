@@ -1,5 +1,6 @@
 <?php
     $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la pagina
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
