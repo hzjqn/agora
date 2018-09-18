@@ -6,11 +6,11 @@
     session_start();
     
     if(isset($_SESSION['user'])){
-        header('Location: ./index.php');
-        exit;
+        var_dump($_SESSION);
     }
 
     $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la pagina
+    
     if($_POST){    
         if((isset($_POST['username']) && $_POST['username'] != null) && (isset($_POST['password']) && $_POST['username'] != null)){
             
@@ -22,7 +22,7 @@
             $errors = validateLogin($username, $password);
         
             if(!$errors){
-                $user = getUserData($username);
+                $user = getUser($username);
                 $_SESSION['user'] = $user;
             }
             
@@ -45,7 +45,7 @@
     ?>
 </head>
 <body>
-    <?php require_once('./navbar.php'); ?> <!-- INCLUIMOS EL NAVBAR -->
+    <?php // require_once('./navbar.php'); ?> <!-- INCLUIMOS EL NAVBAR -->
     
     <!-- MAIN -->
     <main>

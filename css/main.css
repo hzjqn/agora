@@ -111,6 +111,15 @@ section {
     margin: 0px 16px;
     background-color: #fff;
     font-size: .9em; }
+    #login form span.error-span, #register form span.error-span {
+      padding: 1em;
+      display: block;
+      background: red;
+      border-radius: .25em;
+      font-size: .8em;
+      color: white; }
+      #login form span.error-span a, #register form span.error-span a {
+        color: lightpink; }
     #login form p.desc, #register form p.desc {
       text-align: center;
       font-size: .75em; }
@@ -130,6 +139,8 @@ section {
       margin: 0px 0px 16px; }
       #login form input[type="text"]:focus, #login form input[type="password"]:focus, #register form input[type="text"]:focus, #register form input[type="password"]:focus {
         border-color: #4db7ff; }
+      #login form input[type="text"].error, #login form input[type="password"].error, #register form input[type="text"].error, #register form input[type="password"].error {
+        border-color: red; }
     #login form input[type="submit"], #register form input[type="submit"] {
       color: #1f5d0c;
       display: block;

@@ -1,5 +1,24 @@
 <?php
     $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la pagina
+    require_once('./fn.php');
+    require_once('./components/dataValidationComponent.php');
+    require_once('./components/userComponent.php');
+
+
+    if($_POST){
+        $user = [
+            'username' => $_POST['username'],
+            'name' => $_POST['name'],
+            'lastname' => $_POST['lastname'],
+            'password' => $_POST['password'],
+            'email' => $_POST['email']
+        ];
+        $errors = validateRegister($user);
+
+        if(!$errors){
+            registerUser($user);            
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,29 +35,29 @@
     <!-- MAIN -->
     <main>
         <!-- SECCION LOGIN -->
-        <section id="login">
+        <section id="register">
             <!-- FORMULARIO DE REGISTRO -->
             <form method="post" id="login-form">
                 <label for="name">Nombre</label>
-                <input type="text" name="name" placeholder="María">
-                
+                <input class="<?= isset($errors['name']) ? 'error' : ''?>" type="text" name="name" placeholder="María" value="<?= old('name') ?>">
+                <?= isset($errors['name']) ? "<span class='error-span'>".$errors['name']."</span>" : ''?>
                 <label for="lastname">Apellidos</label>
-                <input type="text" name="lastname" placeholder="Gonzalez">
+                <input class="<?= isset($errors['lastname']) ? 'error' : ''?>" type="text" name="lastname" placeholder="Gonzalez" value="<?= old('lastname') ?>">
+                <?= isset($errors['lastname']) ? "<span class='error-span'>".$errors['lastname']."</span>" : ''?>
                 <p class="desc sans">
                     Tu nombre y apellidos sera como firmaras tus notas y comentarios.
                 </p>
                 <label for="username">Nombre de Usuarie</label>
-                <input type="text" name="username" placeholder="margonzalez92">
-                <p class="desc sans">
-                    Tu link de agora sera: <strong>usuarie</strong>.agora.online/</strong>
-                </p>
+                <input class="<?= isset($errors['username']) ? 'error' : ''?>" type="text" name="username" placeholder="margonzalez92" value="<?= old('username') ?>">
+                <?= isset($errors['username']) ? "<span class='error-span'>".$errors['username']."</span>" : ''?>
                 <label for="email">Direccion de correo electronico</label>
-                <input type="text" name="email" placeholder="mgonzalez92@correo.com">
+                <input class="<?= isset($errors['email']) ? 'error' : ''?>" type="text" name="email" placeholder="mgonzalez92@correo.com" value="<?= old('email') ?>">
+                <?= isset($errors['email']) ? "<span class='error-span'>".$errors['email']."</span>" : ''?>
                 <p class="desc sans">
                     Asegurate de usar una direccion de correo electronico real, deberas confirmar tu cuenta.
                 </p>
-                <input type="password" name="password" placeholder="Contraseña">
-                <input type="password" name="password" placeholder="Confirmar Constraseña">
+                <input class="<?= isset($errors['password']) ? 'error' : ''?>" type="password" name="password" placeholder="Contraseña" value="<?= old('password') ?>">
+                <?= isset($errors['password']) ? "<span class='error-span'>".$errors['password']."</span>" : ''?>
                 <input type="submit" value="Registrarse">
                 <p class="desc sans">
                     Si ya tienes una cuenta puedes <a href="login.php">Iniciar Sesión</a>

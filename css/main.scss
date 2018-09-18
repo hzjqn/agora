@@ -168,6 +168,19 @@ section{
         background-color: $_white;
         font-size: .9em;
 
+        span.error-span{
+            padding: 1em;
+            display: block;
+            background: red;
+            border-radius: .25em; 
+            font-size: .8em;
+            color: white;
+
+            a{
+                color: lightpink;
+            }
+        }
+
         p.desc{
             text-align: center;
             font-size: .75em;
@@ -194,6 +207,10 @@ section{
 
             &:focus{
                 border-color: lighten($color: $_mainc, $amount: 15)
+            }
+
+            &.error{
+                border-color: red;
             }
         }
 
