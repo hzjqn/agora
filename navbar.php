@@ -2,8 +2,10 @@
     <div class="container">
     <a class="navbar-brand" href="./index.php"><h1 class="logo"><i class="agora-logo">ágora</i></h1></a>
     
-    <?php
-        session_start();
+    <?php    
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         
         if(isset($_POST['logout']) && $_POST['logout'] === 'true'){
             session_destroy();
