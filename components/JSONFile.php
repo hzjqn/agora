@@ -26,10 +26,11 @@
 
                 return $this;
         }
-
+        /**
+         * Gets a user, expects a username or a email string.
+         */
         public function getUser($usernameOrEmail){
-            $file = fopen($this->url,'r+')
-            
+            $file = fopen($this->url,'r+');            
             while (($line = fgets($file)) != false){
                 $currentUser = json_decode($line);
                 if(isEmail($usernameOrEmail)){
@@ -37,11 +38,13 @@
                         $newUser = new User($currentUser->id, $currentUser->username, $currentUser->password);
                         return $newUser;
                     }
+                    return false;
                 } else {
                     if($usernameOrEmail == $currentUser->$username){
                         $newUser = new User($currentUser->id, $currentUser->username, $currentUser->password);
                         return $newUser;
                     }
+                    return false;
                 }
             }
         }

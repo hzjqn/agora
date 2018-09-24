@@ -20,7 +20,7 @@ function redirect($url, $permanent = false){
   exit;
 }// ***
 function isEmail(string $email):bool{
-  $return = (filter_var($string, FILTER_VALIDATE_EMAIL))? true : false;
+  $return = (filter_var($email, FILTER_VALIDATE_EMAIL))? true : false;
   return $return;
 }
 ?>
