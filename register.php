@@ -1,23 +1,15 @@
 <?php
-    require_once('./fn.php');
-    require_once('./components/dataValidationComponent.php');
-    require_once('./components/userComponent.php');
+    require_once './fn.php';
     
     $tituloPagina = "Ágora | Registrarse"; // Esta variable cambia el titulo de la pagina
-
+    $db = new JSONFile('users.json');
 
     if($_POST){
-        $user = [
-            'username' => $_POST['username'],
-            'name' => $_POST['name'],
-            'lastname' => $_POST['lastname'],
-            'password' => $_POST['password'],
-            'email' => $_POST['email']
-        ];
-        $errors = validateRegister($user);
+        $user = new User($_POST['username'],$_POST['password'],$_POST['email'],$_POST['name'], $_POST['lastname']);
+        $errors = Validation::validateRegister($db,$user);
 
         if(!$errors){
-            registerUser($user);            
+            $db->registerUser($user);           
         }
     }
 ?>
@@ -32,7 +24,7 @@
     <!-- == --> 
 </head>
 <body>
-    <?php include('./navbar.php'); ?>
+    <?php // include('./navbar.php'); ?>
     <!-- MAIN -->
     <main>
         <!-- SECCION LOGIN -->

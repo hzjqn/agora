@@ -1,14 +1,11 @@
 <?php
-    // Components
-    require_once './components/dataValidationComponent.php';
-    require_once './components/userComponent.php';
+    require_once './fn.php';
 
     $tituloPagina = "Ágora | Iniciar Sesion"; // Esta variable cambia el titulo de la pagina
 
     session_start();
     
     if(isset($_SESSION['user']) && $_SESSION != null){
-
         header('Location: ./index.php');
         session_destroy();
         exit;
@@ -16,15 +13,11 @@
     
     if($_POST){    
         if((isset($_POST['username']) && $_POST['username'] != null) && (isset($_POST['password']) && $_POST['username'] != null)){
-            
-            var_dump($_POST);
 
             $username = $_POST['username'];
             $password = $_POST['password'];
 
             $errors = validateLogin($username, $password);
-            
-            var_dump($errors);
 
             if(!$errors){
                 $user = getUser($username);
@@ -50,7 +43,7 @@
     ?>
 </head>
 <body>
-    <?php // require_once('./navbar.php'); ?> <!-- INCLUIMOS EL NAVBAR -->
+    <?php require_once('./navbar.php'); ?> <!-- INCLUIMOS EL NAVBAR -->
     
     <!-- MAIN -->
     <main>

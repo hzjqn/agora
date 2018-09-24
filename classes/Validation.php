@@ -25,27 +25,27 @@
         /**
          * Validates user registry data entries. Requires a User object.
         */    
-        public static function validateRegister(User $user){
+        public static function validateRegister(Database $db, User $user){
             
             // $user deberia ser una array con todos los atributos. Tambien podemos pasar directamente $_POST si armamos el formulario correctamente.
-            $username = trim($user['username'], " \t\n\r\0\x0B");
-            $password = $user['password'];
-            $name = $user['name'];
-            $lastname = $user['lastname'];
-            $email = $user['email'];
+            $username = trim($user->getUsername(), " \t\n\r\0\x0B");
+            $password = $user->getPassword();
+            $name =  $user->getName();
+            $lastname = $user->getLastname();
+            $email = $user->getEmail();
             $errors = [];
     
             
             // Checkeamos el username;
-            if($username != $user['username']){// Si tenía espacios devolvemos error.
+            if($username != $user->getUsername()){// Si tenía espacios devolvemos error.
                 $errores['username'] = "Tu nombre de usuario no debe contener espacios.";
             } else if ($username == null){ // Checkeamos que no haya venido vacio.
                 $errors['username'] = "Debes elegir un nombre de usuario.";
-            } else if (strlen($user['username']) < 3){ // Segundo checkeamos que el username contenga 3 o mas caracteres.
+            } else if (strlen($username) < 3){ // Segundo checkeamos que el username contenga 3 o mas caracteres.
                 $errors['username'] = "Tu nombre de usuario es demasiado corto. Debe contener al menos 3 caractéres.";
-            } else if (strlen($user['username']) > 16){ // Segundo checkeamos que el username contenga 16 o menos caracteres.
+            } else if (strlen($username) > 16){ // Segundo checkeamos que el username contenga 16 o menos caracteres.
                 $errors['username'] = "Tu nombre de usuario es demasiado largo. Debe contener 16 caractéres o menos.";
-            } else if (getUser($username)){
+            } else if ($db->getUser($username)){
                 $errors['username'] = "El nombre de usuario elegido ya ha sido registrado. Probá otro.";
             }
     
@@ -65,7 +65,7 @@
             // Checkeamos el email
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
                 $errors['email'] = 'La direccion de correo electronico dada no es valida.';
-            } else if (getUserByEmail($email)){
+            } else if ($db->getUser($email)){
                 $errors['email'] = 'Ese correo electronico ya esta registrado. Prueba <a href="login.php">iniciar sesión</a>.';
             }
     

@@ -30,8 +30,8 @@
          * Gets a user, expects a username or a email string.
          */
         public function getUser($usernameOrEmail){
-            $file = fopen($this->url,'r+');            
-            while (($line = fgets($file)) != false){
+            $file = fopen($this->getUrl(),'r+');            
+            while (($line = fgets($file, 1)) != false){
                 $currentUser = json_decode($line);
                 if(isEmail($usernameOrEmail)){
                     if($usernameOrEmail == $currentUser->$email){
@@ -48,5 +48,10 @@
                 }
             }
         }
-    } 
+        public function registerUser(User $user){
+            $file = fopen($this->getUrl(), 'a');
+            fwrite($file, $user->getJson().PHP_EOL);
+            fclose($file);
+        }
+    }
 ?>
