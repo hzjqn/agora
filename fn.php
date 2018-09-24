@@ -19,4 +19,8 @@ function redirect($url, $permanent = false){
   header("Location:" . $url, true, $permanent ? 301 : 302);
   exit;
 }// ***
+function isEmail(string $email):bool{
+  $return = (filter_var($string, FILTER_VALIDATE_EMAIL))? true : false;
+  return $return;
+}
 ?>
