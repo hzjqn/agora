@@ -1,6 +1,6 @@
 <?php
     require_once './fn.php';
-    $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la pagina
+    $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la paginagit pu
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -2,7 +2,7 @@
     require_once './fn.php';
 
     $tituloPagina = "Ágora | Iniciar Sesion"; // Esta variable cambia el titulo de la pagina
-
+    $db = new JSONFile('users.json');
     session_start();
     
     if(isset($_SESSION['user']) && $_SESSION != null){
@@ -17,7 +17,7 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $errors = validateLogin($username, $password);
+            $errors = Validation::validateLogin($db, $username, $password);
 
             if(!$errors){
                 $user = getUser($username);
