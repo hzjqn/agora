@@ -33,7 +33,7 @@
         </ul>
     <?php } else {?>
         <div class="ml-auto">
-            <h2><?=$_SESSION['user']['username']?></h2><img class="navbar-pp" src="img/<?= $_SESSION['user']['pp']."pp.png" ?>" alt="asdf"><form method="post"><button type="submit" name="logout" value="true" ><i class="fas fa-sign-out-alt"></i></button></form>
+            <h2><?=$_SESSION['user']->getUsername()?></h2><img class="navbar-pp" src="img/<?= $_SESSION['user']->getProfilePhoto()."pp.png" ?>" alt="asdf"><form method="post"><button type="submit" name="logout" value="true" ><i class="fas fa-sign-out-alt"></i></button></form>
         </div>
     <?php } ?>
     </div>

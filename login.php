@@ -13,14 +13,13 @@
     
     if($_POST){    
         if((isset($_POST['username']) && $_POST['username'] != null) && (isset($_POST['password']) && $_POST['username'] != null)){
-
             $username = $_POST['username'];
             $password = $_POST['password'];
 
             $errors = Validation::validateLogin($db, $username, $password);
 
             if(!$errors){
-                $user = getUser($username);
+                $user = $db->getUser($username);
                 $_SESSION['user'] = $user;
             }
             
@@ -30,7 +29,7 @@
             }
 
         } else {
-            $errors['username'] = 'Debes completar este campo';
+            $errors['username'] = Err::LOGIN_USERNAME_NULL;
         }
     }
 
@@ -51,7 +50,8 @@
         <section id="login">
             <!-- FORMULARIO DE INICIO DE SESIÓN -->
             <form method="post" id="login-form">
-                <?php if(isset($errors)){foreach($errors as $value){
+                <?php
+                if(isset($errors)){foreach($errors as $value){
                     echo $value;
                 }} ?>
                 <input type="text" name="username" placeholder="Nombre de usuario o dirección de correo electronico">

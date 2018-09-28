@@ -27,31 +27,51 @@
                 return $this;
         }
         /**
-         * Gets a user, expects a username or a email string.
+         * Returns a User object with user data from db, expects a username string or a email string from a registered user.
          */
         public function getUser($usernameOrEmail){
-            $file = fopen($this->getUrl(),'r+');            
-            while (($line = fgets($file, 1)) != false){
-                $currentUser = json_decode($line);
+            $file = json_decode(file_get_contents($this->url), true);
+            if(isset($file['users'])){
                 if(isEmail($usernameOrEmail)){
-                    if($usernameOrEmail == $currentUser->$email){
-                        $newUser = new User($currentUser->id, $currentUser->username, $currentUser->password);
-                        return $newUser;
+                    foreach($file['users'] as $user){
+                        if($usernameOrEmail === $user['email']){
+                            return new User($user['username'],$user['password'],$user['email'],$user['name'],$user['lastname'],$user['profilePhoto'],$user['id']);
+                        }
                     }
-                    return false;
                 } else {
-                    if($usernameOrEmail == $currentUser->$username){
-                        $newUser = new User($currentUser->id, $currentUser->username, $currentUser->password);
-                        return $newUser;
+                    foreach($file['users'] as $user){
+                        if($usernameOrEmail === $user['username']){
+                            return new User($user['username'],$user['password'],$user['email'],$user['name'],$user['lastname'],$user['profilePhoto'],$user['id']);
+                        }
                     }
-                    return false;
                 }
             }
+            return false;
         }
+
+        /**
+         * Registers a user in the DB. Expects a User object
+         */
         public function registerUser(User $user){
-            $file = fopen($this->getUrl(), 'a');
-            fwrite($file, $user->getJson().PHP_EOL);
-            fclose($file);
+            $file = json_decode(file_get_contents($this->url), true);
+            $userArray = [
+                'username' => $user->getUsername(),
+                'password' => password_hash($user->getPassword(), PASSWORD_DEFAULT),
+                'email' => $user->getEmail(),
+                'name' => $user->getName(),
+                'lastname' => $user->getLastname(),
+                'profilePhoto' => $user->getProfilePhoto(),
+                'id' => $user->getId()
+            ];
+
+            if(isset($file['users'])){
+                $file['users'][] = $userArray;
+            } else {
+                $file = ['users'=>[]];
+                $file['users'][] = $userArray;
+            }
+            file_put_contents($this->url,json_encode($file));
+            return true;
         }
     }
 ?>

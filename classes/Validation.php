@@ -1,4 +1,6 @@
 <?php
+    require_once './classes/Error.php';
+    
     abstract class Validation{
 
         /**
@@ -8,16 +10,15 @@
             $foundUser = $db->getUser($username);
             if($foundUser){
                 if(password_verify($password, $foundUser->getPassword())){
-                    return true;
+                    return false;
                 }
 
                 else {
-                    $errors['passowrd'] = 'La contraseña ingresada no es la correcta'; 
+                    $errors['passowrd'] = Err::LOGIN_PASSWORD; 
                 }
             } else {
-                $errors['username'] = 'No se ha encontrado ningun ususario con ese nombre';
-            }
-            
+                $errors['username'] = Err::LOGIN_USERNAME;
+            }            
             return $errors;
             // si el user no coincide error : username
         }
@@ -38,45 +39,41 @@
             
             // Checkeamos el username;
             if($username != $user->getUsername()){// Si tenía espacios devolvemos error.
-                $errores['username'] = "Tu nombre de usuario no debe contener espacios.";
+                $errores['username'] = Err::REG_USERNAME_CONTAINS_SPACES;
             } else if ($username == null){ // Checkeamos que no haya venido vacio.
-                $errors['username'] = "Debes elegir un nombre de usuario.";
+                $errors['username'] = Err::REG_USERNAME_NULL;
             } else if (strlen($username) < 3){ // Segundo checkeamos que el username contenga 3 o mas caracteres.
-                $errors['username'] = "Tu nombre de usuario es demasiado corto. Debe contener al menos 3 caractéres.";
+                $errors['username'] = Err::REG_USERNAME_TOO_SHORT;
             } else if (strlen($username) > 16){ // Segundo checkeamos que el username contenga 16 o menos caracteres.
-                $errors['username'] = "Tu nombre de usuario es demasiado largo. Debe contener 16 caractéres o menos.";
+                $errors['username'] = Err::REG_USERNAME_TOO_LONG;
             } else if ($db->getUser($username)){
-                $errors['username'] = "El nombre de usuario elegido ya ha sido registrado. Probá otro.";
+                $errors['username'] = Err::REG_USERNAME_TAKEN;
             }
     
             // Checkeamos la password
             if($password == null){
-                $errors['password'] = 'Debes elegir una contraseña.';
+                $errors['password'] = Err::REG_PASSWORD_NULL;
             } else if(strlen($password) < 8){ // Si la password tiene menos de 8 caracteres;
-                $errors['password'] = "La contraseña elegida es demasiado corta. Debe contener al menos 8 caracteres";
-            } else if ($password == strtolower($password)) { // Si la password no tiene letras mayusculas
-                $errors['password'] = "La constraseña elegida es demasiado debil. Debe contener al menos una letra mayuscula, una letra minuscula y un numero.";
-            } else if ($password == strtoupper($password)) { // Si la password no tiene letras minusculas
-                $errors['password'] = "La constraseña elegida es demasiado debil. Debe contener al menos una letra mayuscula, una letra minuscula y un numero.";
-            } else if ($password == trim($password, '1234567890')){ // Si la password no tiene numeros
-                $errors['password'] = "La constraseña elegida es demasiado debil. Debe contener al menos una letra mayuscula, una letra minuscula y un numero.";
+                $errors['password'] = Err::REG_PASSWORD_TOO_SHORT;
+            } else if ($password == strtolower($password) || $password == strtoupper($password) || $password == trim($password, '1234567890')){ // Si la password no tiene numeros
+                $errors['password'] = Err::REG_PASSWORD_TOO_WEAK;
             }
     
             // Checkeamos el email
             if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
-                $errors['email'] = 'La direccion de correo electronico dada no es valida.';
+                $errors['email'] = Err::REG_EMAIL_INVALID;
             } else if ($db->getUser($email)){
-                $errors['email'] = 'Ese correo electronico ya esta registrado. Prueba <a href="login.php">iniciar sesión</a>.';
+                $errors['email'] = Err::REG_EMAIL_IS_BEING_USED;
             }
     
             // Checkeamos el nombre que no este vacio nomas
             if($name == null){
-                $errors['name'] = 'Debes completar este campo';
+                $errors['name'] = Err::REG_NAME_NULL;
             }
     
             // Checkeamos el apellido que no este vacio nomas
             if($lastname == null){
-                $errors['name'] = 'Debes completar este campo';
+                $errors['lastname'] = Err::REG_LASTNAME_NULL;
             }
     
             // Retornamos el array de errores;

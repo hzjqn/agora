@@ -1,21 +1,27 @@
 <?php
+/**
+ * Expects 
+ * string username!, string password!, string email!, string name, string lastname, string pp, int id
+ */
 class User 
 {
+    private $id;
     private $username;
     private $password;
     private $email;
     private $name;
     private $lastname;
-    private $pp;
+    private $profilePhoto;
 
-    public function __construct(string $username, string $password, string $email, string $name = null, string $lastname = null, string $pp = null){
+    public function __construct(string $username, string $password, string $email, string $name = null, string $lastname = null, string $profilePhoto = null, $id = null){
         $this
             ->setUsername($username)
             ->setPassword($password)
             ->setEmail($email)
             ->setName($name)
             ->setLastname($lastname)
-            ->setPp($pp);
+            ->setProfilePhoto($profilePhoto)
+            ->setId($id);
     }
 
     /**
@@ -28,9 +34,23 @@ class User
             'email' => $this->getEmail(),
             'name' => $this->getName(), 
             'lastname' => $this->getLastname(), 
-            'pp' => $this->getPp()
+            'profilePhoto' => $this->getProfilePhoto()
         ];
         return json_encode($array);
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getId(){
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     */
+    public function setId($id){
+        $this->id = $id;
     }
 
     /**
@@ -136,9 +156,9 @@ class User
     /**
      * Get the value of birthday
      */ 
-    public function getPp()
+    public function getProfilePhoto()
     {
-        return $this->pp;
+        return $this->profilePhoto;
     }
 
     /**
@@ -146,9 +166,9 @@ class User
      *
      * @return  self
      */ 
-    public function setPp($pp)
+    public function setProfilePhoto($profilePhoto)
     {
-        $this->pp = $pp;
+        $this->profilePhoto = $profilePhoto;
 
         return $this;
     }
