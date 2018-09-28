@@ -1,11 +1,15 @@
 <?php
+    // En el caso de querer agregar errores usar siempre constantes y nombres 
+    /**
+     * Class para agrupar todos los mensajes de error para mejor mantenimiento y escalabilidad.
+     */
     class Err {
 
         // Log in errors:
         const LOGIN_USERNAME_NULL = "Debes ingresar tu nombre de usuario";
         const LOGIN_PASSWORD_NULL = "Debes ingresar tu contraseña";
-        const LOGIN_USERNAME = "No existen cuentas de Agora asociadas a ese email o nombre de usuario. Quizas quieras<a href='register.php'>registrarte</a>";
-        const LOGIN_PASSWORD = "El usuario y contraseña ingresados son incorrectos.";
+        const LOGIN_USERNAME_NOT_FOUND = "No existen cuentas de Agora asociadas a ese email o nombre de usuario. Quizas quieras<a href='register.php'>registrarte</a>";
+        const LOGIN_PASSWORD_VALIDATION_FALSE = "El usuario y contraseña ingresados son incorrectos.";
         
         // Register errors:
 
@@ -20,7 +24,7 @@
         const REG_PASSWORD_TOO_SHORT = 'La constraseña introducida es demasiado corta, debe tener 8 caracteres o mas.';
         const REG_PASSWORD_TOO_WEAK = 'La contraseña elegida es demasiado debil, debe contener almenos un caracter numerico, una minuscula y una mayuscula';
 
-        // eMail
+        // Email
         const REG_EMAIL_INVALID = "El email elegido no es valido";
         const REG_EMAIL_IS_BEING_USED = "El email elegido ya esta en uso. Quizas estas buscando <a href='login.php'>iniciar sesion<a>?";
 

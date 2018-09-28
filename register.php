@@ -9,7 +9,7 @@
         $errors = Validation::validateRegister($db,$user);
 
         if(!$errors){
-            $db->registerUser($user);           
+            $db->createUser($user);           
         }
     }
 ?>
