@@ -39,6 +39,19 @@ class User
         return json_encode($array);
     }
 
+    public function getArray(){
+        $array = [
+            'username' => $this->getUsername(),
+            'password' => password_hash($this->getPassword(), PASSWORD_DEFAULT), 
+            'email' => $this->getEmail(),
+            'name' => $this->getName(), 
+            'lastname' => $this->getLastname(), 
+            'profilePhoto' => $this->getProfilePhoto()
+        ];
+
+        return $array;
+    }
+
     /**
      * Get the value of id
      */

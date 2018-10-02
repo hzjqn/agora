@@ -3,7 +3,8 @@
     /**
      * Class para agrupar todos los mensajes de error para mejor mantenimiento y escalabilidad.
      */
-    class Err {
+    class Err 
+    {
 
         // Log in errors:
         const LOGIN_USERNAME_NULL = "Debes ingresar tu nombre de usuario";

@@ -1,7 +1,8 @@
 <?php
     require_once './classes/Error.php';
     
-    abstract class Validation{
+    abstract class Validation
+    {
 
         /**
          * Validates user/password combinations in a given database. Returns true when the combination is correct and and an array of errors if it isn't.
