@@ -14,7 +14,8 @@
         
         // Register errors:
 
-        // UsernameREG_USERNAME_CONTAINS_SPACES
+        // Username
+        const REG_USERNAME_CONTAINS_INVALID_CHARS = "El nombre de usuario elegido contiene caracteres invalidos. Solo debes usar letras, guiones y numeros.";
         const REG_USERNAME_NULL = "Debes elegir un nombre de usuario.";
         const REG_USERNAME_TOO_SHORT = "El nombre de usuario elegido es demasiado corto, debe contener 3 caracteres o mas.";
         const REG_USERNAME_TOO_LONG = "El nombre de usuario elegido es demasiado largo, debe contener 16 caracteres o menos.";

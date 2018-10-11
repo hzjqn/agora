@@ -13,7 +13,7 @@ class User
     private $lastname;
     private $profilePhoto;
 
-    public function __construct(string $username, string $password, string $email, string $name = null, string $lastname = null, string $profilePhoto = null, $id = null){
+    public function __construct(string $username, string $password, string $email, string $name = null, string $lastname = null, $profilePhoto = null, $id = null){
         $this
             ->setUsername($username)
             ->setPassword($password)
@@ -30,7 +30,7 @@ class User
     public function getJson(){
         $array = [
             'username' => $this->getUsername(),
-            'password' => password_hash($this->getPassword(), PASSWORD_DEFAULT), 
+            'password' => $this->getPassword(), 
             'email' => $this->getEmail(),
             'name' => $this->getName(), 
             'lastname' => $this->getLastname(), 
@@ -42,7 +42,7 @@ class User
     public function getArray(){
         $array = [
             'username' => $this->getUsername(),
-            'password' => password_hash($this->getPassword(), PASSWORD_DEFAULT), 
+            'password' => $this->getPassword(), 
             'email' => $this->getEmail(),
             'name' => $this->getName(), 
             'lastname' => $this->getLastname(), 

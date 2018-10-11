@@ -31,9 +31,10 @@
                 <a class="nav-link reg" href="./register.php">Registrarse</a>
             </li>
         </ul>
-    <?php } else {?>
+    <?php } else { 
+        $user = $db->getUserById($_SESSION['user']->getId()); ?>
         <div class="ml-auto">
-            <h2><?=$_SESSION['user']->getUsername()?></h2><img class="navbar-pp" src="img/<?= $_SESSION['user']->getProfilePhoto()."pp.png" ?>" alt="asdf"><form method="post"><button type="submit" name="logout" value="true" ><i class="fas fa-sign-out-alt"></i></button></form>
+            <a href="profile.php"><h2><?= $user->getUsername() ?></h2></a><img class="navbar-pp" src="img/<?= $user->getProfilePhoto()."pp.png" ?>" alt="asdf"><form method="post"><button type="submit" name="logout" value="true" ><i class="fas fa-sign-out-alt"></i></button></form>
         </div>
     <?php } ?>
     </div>

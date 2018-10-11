@@ -1,18 +1,10 @@
 <?php
     require_once './fn.php';
+    $tituloPagina = 'Agora: Plaza';
     
-    $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la pagina
     $db = new JSONFile();
-
-    if(isset($_GET['id'])){
-        $user = $db->getUserById($_GET['id']);
-    } else {
-        if(!isset($_SESSION['user'])){
-            redirect('./login.php?r=profile');
-        }
-        $user = $db->getUserById($_SESSION['user']->getId());
-    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,16 +14,15 @@
 </head>
 <body>
     <?php include("./navbar.php");?>
-    <header id="profile-header">
+    <header id="landing-header" class="not-fullscreen">
         <div class="container">
-            <img src="img/<?= $user->getProfilePhoto() ?>pp.png" alt="<?= $user->getUsername() ?>">
-            <h2><?= $user->getName() ?> <?= $user->getLastname() ?></h2>
+            <h2>Lo que la comunindad está compartiendo en ágora</h2>
         </div>
     </header>
     <main>
         <div class="container">
             
-        <?php if(isset($user))foreach($db->getAllArticlesByUser($user->getId()) as $article){?>
+        <?php foreach($db->getAllArticles() as $article){?>
             <article class="profile-article card">
                 <h3><?=$article->getTitle()?></h3>
                 <div class="content">

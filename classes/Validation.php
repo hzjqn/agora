@@ -10,15 +10,17 @@
         public static function validateLogin(Database $db, string $username, string $password){
             $foundUser = $db->getUser($username);
             if($foundUser){
+                var_dump($foundUser);
                 if(password_verify($password, $foundUser->getPassword())){
                     return false;
                 }
-
                 else {
-                    $errors['passowrd'] = Err::LOGIN_PASSWORD; 
+                    var_dump($password);
+                    var_dump($foundUser->getPassword());
+                    $errors['passowrd'] = Err::LOGIN_PASSWORD_VALIDATION_FALSE; 
                 }
             } else {
-                $errors['username'] = Err::LOGIN_USERNAME;
+                $errors['username'] = Err::LOGIN_USERNAME_NOT_FOUND;
             }            
             return $errors;
             // si el user no coincide error : username
@@ -27,20 +29,20 @@
         /**
          * Validates user registry data entries. Requires a User object.
         */    
-        public static function validateRegister(Database $db, User $user){
+        public static function validateRegister(Database $db, array $user){
             
             // $user deberia ser una array con todos los atributos. Tambien podemos pasar directamente $_POST si armamos el formulario correctamente.
-            $username = trim($user->getUsername(), " \t\n\r\0\x0B");
-            $password = $user->getPassword();
-            $name =  $user->getName();
-            $lastname = $user->getLastname();
-            $email = $user->getEmail();
+            $username = trim($user['username'], " \t\n\r\0\x0B");
+            $password = $user['password'];
+            $name =  $user['name'];
+            $lastname = $user['lastname'];
+            $email = $user['email'];
             $errors = [];
     
             
             // Checkeamos el username;
-            if($username != $user->getUsername()){// Si tenía espacios devolvemos error.
-                $errores['username'] = Err::REG_USERNAME_CONTAINS_SPACES;
+            if($username != $user['username']){// Si tenía espacios devolvemos error.
+                $errores['username'] = Err::REG_USERNAME_CONTAINS_INVALID_CHARS;
             } else if ($username == null){ // Checkeamos que no haya venido vacio.
                 $errors['username'] = Err::REG_USERNAME_NULL;
             } else if (strlen($username) < 3){ // Segundo checkeamos que el username contenga 3 o mas caracteres.
@@ -79,6 +81,10 @@
     
             // Retornamos el array de errores;
             return $errors;
+        }
+        
+        public static function validateArticle(){
+            return true;
         }
     }
 ?>

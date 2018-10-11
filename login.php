@@ -2,7 +2,7 @@
     require_once './fn.php';
 
     $tituloPagina = "Ágora | Iniciar Sesion"; // Esta variable cambia el titulo de la pagina
-    $db = new JSONFile('users.json');
+    $db = new JSONFile();
     session_start();
     
     if(isset($_SESSION['user']) && $_SESSION != null){
@@ -24,7 +24,13 @@
             }
             
             if(isset($_SESSION['user'])){
-            header('Location: ./index.php');
+                if($_GET['rta'] !== null){
+                    redirect("./article?id=$_GET[id]");
+                } else if($_GET['r'] !== null){
+                    redirect("./$_GET[r].php");
+                }  else {
+                    header('Location: ./profile.php');
+                }
             exit;
             }
 
@@ -42,7 +48,7 @@
     ?>
 </head>
 <body>
-    <?php require_once('./navbar.php'); ?> <!-- INCLUIMOS EL NAVBAR -->
+    <?php # require_once('./navbar.php'); ?> <!-- INCLUIMOS EL NAVBAR -->
     
     <!-- MAIN -->
     <main>

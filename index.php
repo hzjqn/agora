@@ -1,6 +1,10 @@
 <?php
     require_once './fn.php';
-    $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la paginagit pu
+    $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la pagina
+
+    if(isset($_SESSION['user'])){
+        redirect('./plaza.php');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

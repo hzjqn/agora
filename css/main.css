@@ -100,7 +100,6 @@ h1.logo {
       outline: none; }
       .navbar-agora form button i {
         display: block;
-        vertical-align: middle;
         padding: 15px;
         font-size: 18px;
         display: block; }
@@ -193,6 +192,31 @@ section {
       #login form input[type="submit"]:focus, #register form input[type="submit"]:focus {
         background: #83eb63; }
 
+#profile-header {
+  margin-top: 64px;
+  padding: 1.618em;
+  background-color: #0098ff;
+  display: flex; }
+  #profile-header .pp {
+    display: inline-block;
+    overflow: hidden;
+    border-radius: 100%; }
+  #profile-header h2 {
+    color: white; }
+
+.profile-article.card {
+  margin: 1em;
+  width: auto;
+  padding: 1em; }
+  .profile-article.card .content {
+    display: inline-block; }
+  .profile-article.card h3 {
+    display: inline-block; }
+
+.full-view-article {
+  padding: 1em;
+  min-height: 50vh; }
+
 #landing-header {
   display: flex;
   justify-content: flex-end;
@@ -210,6 +234,9 @@ section {
       text-align: center;
       font-weight: 300;
       font-size: 24px; }
+  #landing-header.not-fullscreen {
+    height: auto;
+    padding: 128px 0px 64px; }
 
 #faq-header {
   display: flex;

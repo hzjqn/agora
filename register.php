@@ -2,14 +2,13 @@
     require_once './fn.php';
     
     $tituloPagina = "Ágora | Registrarse"; // Esta variable cambia el titulo de la pagina
-    $db = new JSONFile('users.json');
+    $db = new JSONFile();
 
     if($_POST){
-        $user = new User($_POST['username'],$_POST['password'],$_POST['email'],$_POST['name'], $_POST['lastname']);
-        $errors = Validation::validateRegister($db,$user);
+        $errors = Validation::validateRegister($db,$_POST);
 
         if(!$errors){
-            $db->createUser($user);           
+            $db->createUser($_POST);         
         }
     }
 ?>

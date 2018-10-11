@@ -149,7 +149,6 @@ h1.logo{
 
             i{
                 display: block;
-                vertical-align: middle;
                 padding: 15px;
                 font-size: 18px;
                 display: block;
@@ -286,6 +285,39 @@ section{
     }
 }
 
+#profile-header{
+    margin-top: $_navbar_height;
+    padding: 1.618em;
+    background-color: $_mainc;
+    display: flex;
+
+    .pp{
+        display: inline-block;
+        overflow: hidden;
+        border-radius: 100%;
+    }
+
+    h2{
+        color: white;
+    }
+}
+
+.profile-article.card {
+    margin: 1em;
+    width: auto;
+    padding: 1em;
+    .content{
+        display: inline-block;
+    }
+    h3{
+        display: inline-block;
+    }
+}
+
+.full-view-article{
+    padding: 1em;
+    min-height: 50vh;
+}
 
 #landing-header{
     display: flex;
@@ -306,6 +338,11 @@ section{
             font-weight: 300;
             font-size: 24px;
         }
+    }
+
+    &.not-fullscreen{
+        height: auto;
+        padding: 128px 0px 64px;
     }
 }
 
