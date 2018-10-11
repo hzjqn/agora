@@ -34,6 +34,7 @@
         </div>
     </main>
     <?php
+    include('./join.php');
     include('./footer.php');
     include('./js.php');
     ?>
