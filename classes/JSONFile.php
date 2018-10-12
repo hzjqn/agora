@@ -201,13 +201,18 @@
             $article['id'] = $this->newPostId();
 
             if(isset($file['articles'])){
+                var_dump($file, $article);
                 $file['articles'][] = $article;
             } else {
                 $file = ['articles'=>[]];
                 $file['articles'][] = $article;
             }
+
+            $newArticle = new Article($article['id'], $article['title'],$article['content'],$article['authorId']);
+
             file_put_contents($this->articlesPath,json_encode($file));
-            return new Article($article['id'], $article['title'],$article['content'],$article['authorId']);
+            
+            return $newArticle;
         }
 
         public function changeArticle(int $articleId, ...$changes){

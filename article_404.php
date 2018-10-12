@@ -1,5 +1,6 @@
 <?php
     require_once './fn.php';
+    $tituloPagina = 'Agora: Articulo no disponible'
 ?>
 <!DOCTYPE html>
 <html lang="en">

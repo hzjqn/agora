@@ -6,6 +6,7 @@
     if(isset($_SESSION['user'])){
         if($_POST){
             $errors = Validation::validateArticle($_POST);
+            
             if(!$errors){
                $newArticle = $db->createArticle(['title' => $_POST['title'], 'content' => $_POST['content'], 'authorId' => $_SESSION['user']->getId()]);
                redirect('./article.php?id='.$newArticle->getId());
