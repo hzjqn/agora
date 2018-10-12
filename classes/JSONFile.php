@@ -207,11 +207,10 @@
                 $file = ['articles'=>[]];
                 $file['articles'][] = $article;
             }
-
+            
             $newArticle = new Article($article['id'], $article['title'],$article['content'],$article['authorId']);
 
             file_put_contents($this->articlesPath,json_encode($file));
-            
             return $newArticle;
         }
 
