@@ -28,7 +28,7 @@
                 <div class="content">
                     <?=$article->getContent() ?>
                 </div>
-                <a href="article?id=<?=$article->getId() ?>">+</a>
+                <a href="article.php?id=<?=$article->getId() ?>">+</a>
             </article>
         <?php } ?>
         </div>
