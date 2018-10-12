@@ -23,7 +23,7 @@
     <!-- == --> 
 </head>
 <body>
-    <?php // include('./navbar.php'); ?>
+    <?php include('./navbar.php'); ?>
     <!-- MAIN -->
     <main>
         <!-- SECCION LOGIN -->

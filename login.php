@@ -3,7 +3,6 @@
 
     $tituloPagina = "Ágora | Iniciar Sesion"; // Esta variable cambia el titulo de la pagina
     $db = new JSONFile();
-    session_start();
     
     if(isset($_SESSION['user']) && $_SESSION != null){
         header('Location: ./index.php');
@@ -27,7 +26,7 @@
                 if($_GET['rta'] !== null){
                     redirect("./article?id=$_GET[id]");
                 } else if($_GET['r'] !== null){
-                    redirect("./$_GET[r].php");
+                    redirect("./".$_GET['r'].".php");
                 }  else {
                     header('Location: ./profile.php');
                 }

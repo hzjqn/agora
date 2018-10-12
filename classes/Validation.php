@@ -83,8 +83,33 @@
             return $errors;
         }
         
-        public static function validateArticle(){
-            return true;
+        /**
+         * Validates the data of an Article in array form
+¿
+         */
+        public static function validateArticle($article){
+
+            $errors = null;
+
+            if(strlen($article['title']) > 128){
+                $errors['title'] = Err::ARTICLE_TITLE_TOO_LONG;
+            } else if (strlen($article['title']) < 4){
+                $errors['title'] = Err::ARTICLE_TITLE_NULL;
+            } else if ($article['title'] == null){
+                $errors['title'] = Err::ARTICLE_TITLE_NULL;
+            }
+
+            if(strlen($article['content']) > 320000){
+                $errors['content'] = Err::ARTICLE_CONTENT_TOO_LONG;
+            } else if ($article['content'] == null){
+                $errors['content'] = Err::ARTICLE_CONTENT_NULL;
+            }
+
+            if($errors){
+                return $errors;
+            } else {
+                return false;
+            }
         }
     }
 ?>

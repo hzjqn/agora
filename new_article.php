@@ -5,13 +5,15 @@
     $db = new JSONFile();
     if(isset($_SESSION['user'])){
         if($_POST){
-            $valid = Validation::validateArticle($_POST);
-            if($valid){
-                $db->createArticle(['title' => $_POST['title'], 'content' => $_POST['content'], 'authorId' => $_SESSION['user']->getId()]);
+            $errors = Validation::validateArticle($_POST);
+            if(!$errors){
+               $newArticle = $db->createArticle(['title' => $_POST['title'], 'content' => $_POST['content'], 'authorId' => $_SESSION['user']->getId()]);
+               redirect('./article.php?id='.$newArticle->getId());
             }
         }
     } else {
         redirect("./login.php?rta=$_GET[id]");
+        exit;
     }
 ?>
 <!DOCTYPE html>
@@ -26,8 +28,12 @@
     <main>
         <section id="features" class="content-wall">
             <form action="" method="post">
-                <input type="text" name="title">
-                <input type="text" name="content">
+                <label for="name">Titulo</label>
+                <input class="<?= isset($errors['title']) ? 'error' : ''?>" type="text" name="title" placeholder="Titulo" value="<?= old('title') ?>">
+                <?= isset($errors['title']) ? "<span class='error-span'>".$errors['title']."</span>" : ''?>
+                <label for="name">Contenido</label>
+                <input class="<?= isset($errors['content']) ? 'error' : ''?>" type="text" name="content" placeholder="Contenido" value="<?= old('content') ?>">
+                <?= isset($errors['content']) ? "<span class='error-span'>".$errors['content']."</span>" : ''?>
                 <input type="submit" value="Publicar">
             </form>
         </section>

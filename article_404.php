@@ -1,4 +1,6 @@
-
+<?php
+    require_once './fn.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

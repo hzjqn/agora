@@ -207,7 +207,7 @@
                 $file['articles'][] = $article;
             }
             file_put_contents($this->articlesPath,json_encode($file));
-            return true;
+            return new Article($article['id'], $article['title'],$article['content'],$article['authorId']);
         }
 
         public function changeArticle(int $articleId, ...$changes){
