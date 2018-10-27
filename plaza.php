@@ -1,8 +1,6 @@
 <?php
     require_once './fn.php';
     $tituloPagina = 'Agora: Plaza';
-    
-    $db = new JSONFile();
 ?>
 
 <!DOCTYPE html>
@@ -21,16 +19,23 @@
     </header>
     <main>
         <div class="container">
-            
-        <?php foreach($db->getAllArticles() as $article){?>
-            <article class="profile-article card">
-                <h3><?=$article->getTitle()?></h3>
-                <div class="content">
-                    <?=$article->getContent() ?>
-                </div>
-                <a href="article.php?id=<?=$article->getId() ?>">+</a>
-            </article>
-        <?php } ?>
+        <?php $allarticles = $db->getAllArticles();
+            if($allarticles){
+                foreach($allarticles as $article){?>
+                    <article class="profile-article card">
+                        <h3><?=$article->getTitle()?></h3>
+                        <div class="content">
+                            <?=$article->getContent() ?>
+                        </div>
+                        <a href="article.php?id=<?=$article->getId() ?>">+</a>
+                    </article>
+        <?php   }
+            } else {
+                echo '<span class="m-5" style="display:block;">No se han publicado notas</span>';
+            }
+        ?>
+
+        
         </div>
     </main>
     <?php

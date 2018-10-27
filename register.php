@@ -2,7 +2,6 @@
     require_once './fn.php';
     
     $tituloPagina = "Ágora | Registrarse"; // Esta variable cambia el titulo de la pagina
-    $db = new JSONFile();
 
     if($_POST){
         $errors = Validation::validateRegister($db,$_POST);

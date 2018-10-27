@@ -277,6 +277,19 @@ section {
     #features article p {
       font-family: 'PT Serif', serif; }
 
+section.new-article-form {
+  padding: 2em; }
+  section.new-article-form form {
+    display: flex;
+    flex-direction: column;
+    width: 100%; }
+    section.new-article-form form input[name="title"] {
+      display: block;
+      width: 100%; }
+    section.new-article-form form input[name="content"] {
+      display: block;
+      width: 100%; }
+
 aside#join {
   background: url(../img/join-background.png);
   color: #fff;

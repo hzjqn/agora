@@ -10,13 +10,10 @@
         public static function validateLogin(Database $db, string $username, string $password){
             $foundUser = $db->getUser($username);
             if($foundUser){
-                var_dump($foundUser);
                 if(password_verify($password, $foundUser->getPassword())){
                     return false;
                 }
                 else {
-                    var_dump($password);
-                    var_dump($foundUser->getPassword());
                     $errors['passowrd'] = Err::LOGIN_PASSWORD_VALIDATION_FALSE; 
                 }
             } else {

@@ -5,7 +5,7 @@ spl_autoload_register(function($class){
 });
 
 $session = new Session();
-$db = new JSONFile();
+$db = new MySQL();
 
 // Esta funcion nos permite debuggear de una manera simple y linda
 function dd($var){

@@ -2,7 +2,6 @@
     require_once './fn.php';
     
     $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la pagina
-    $db = new JSONFile();
 
     if(isset($_GET['id'])){
         $user = $db->getUserById($_GET['id']);

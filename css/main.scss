@@ -403,6 +403,25 @@ section{
     }
 }
 
+section.new-article-form{
+    padding: 2em;
+    form{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        input[name="title"]{
+            display: block;
+            width: 100%;
+        }
+        
+        input[name="content"]{
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
 // Aside de recrutamiento (join.php)
 aside#join{
     background: url(../img/join-background.png);

@@ -179,19 +179,16 @@
 
         public function getAllArticlesByUser($authorId){
             $file = json_decode(file_get_contents($this->articlesPath), true);
+            $articles = [];
             if(isset($file['articles'])){
                 foreach($file['articles'] as $article){
                     if($authorId === $article['authorId']){
                         $articles[] = new Article($article['id'],$article['title'],$article['content'],$article['authorId']);
                     }
                 }
-
-                if($articles !== []){
-                    return $articles;
-                }
             }
             
-            return false;
+            return $articles;
         }
 
         public function createArticle(array $article){
