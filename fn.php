@@ -7,6 +7,14 @@ spl_autoload_register(function($class){
 $session = new Session();
 $db = new MySQL();
 
+function check() {
+  if(isset($_SESSION['user']) && $_SESSION['user'] != null){
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // Esta funcion nos permite debuggear de una manera simple y linda
 function dd($var){
   echo "<pre>";

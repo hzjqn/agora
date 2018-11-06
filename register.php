@@ -3,11 +3,22 @@
     
     $tituloPagina = "Ágora | Registrarse"; // Esta variable cambia el titulo de la pagina
 
+    if(isset($_SESSION['user']) && $_SESSION != null){
+        redirect('./');
+        session_destroy();
+        exit;
+    }
+
     if($_POST){
         $errors = Validation::validateRegister($db,$_POST);
 
         if(!$errors){
-            $db->createUser($_POST);         
+            $newUser = $db->createUser($_POST);
+            
+            $_SESSION['user'] = $newUser;
+            
+            redirect('./plaza.php');
+            exit();
         }
     }
 ?>

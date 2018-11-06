@@ -6,7 +6,8 @@
 body {
   background: #fff;
   font-family: 'Open Sans', sans-serif;
-  color: #323232; }
+  color: #323232;
+  padding-top: 64px; }
 
 a {
   text-decoration: none; }
@@ -87,26 +88,26 @@ h1.logo {
   .navbar-agora form {
     display: inline;
     vertical-align: middle; }
-    .navbar-agora form button {
-      margin: 0px 0px 0px .5em;
-      display: inline;
-      background: transparent;
-      color: #0098ff;
-      border: none;
-      border-radius: 100%;
-      padding: .5em .5em;
-      transition: background .25s;
-      padding: 0px;
-      outline: none; }
-      .navbar-agora form button i {
-        display: block;
-        padding: 15px;
-        font-size: 18px;
-        display: block; }
-      .navbar-agora form button:hover, .navbar-agora form button:focus {
-        background: #f2f2f2; }
-      .navbar-agora form button:active {
-        background: #d9d9d9; }
+  .navbar-agora .toolbar-btn {
+    margin: 0px 0px 0px .5em;
+    display: inline-block;
+    background: transparent;
+    color: #0098ff;
+    border: none;
+    border-radius: 100%;
+    padding: .5em .5em;
+    transition: background .25s;
+    padding: 0px;
+    outline: none; }
+    .navbar-agora .toolbar-btn i {
+      display: block;
+      padding: 15px;
+      font-size: 18px;
+      display: block; }
+    .navbar-agora .toolbar-btn:hover, .navbar-agora .toolbar-btn:focus {
+      background: #f2f2f2; }
+    .navbar-agora .toolbar-btn:active {
+      background: #d9d9d9; }
   .navbar-agora .navbar-toggler {
     color: #0098ff;
     position: relative;
@@ -127,7 +128,23 @@ h1.logo {
         margin-top: 4px; }
 
 section {
-  padding: 64px 0px; }
+  padding: 0px 0px; }
+
+aside#autor {
+  padding: 3em 2em; }
+
+#article .full-view-article {
+  padding: 3em 0em;
+  text-align: left;
+  width: 100%; }
+  #article .full-view-article h2 {
+    font-family: 'PT Serif', serif;
+    text-transform: capitalize;
+    font-weight: 600;
+    font-size: 2.5em; }
+  #article .full-view-article h3 {
+    font-family: 'PT Serif', serif;
+    font-size: 2em; }
 
 #login, #register {
   padding: 128px 0px;
@@ -213,21 +230,16 @@ section {
   .profile-article.card h3 {
     display: inline-block; }
 
-.full-view-article {
-  padding: 1em;
-  min-height: 50vh; }
-
 #landing-header {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  height: calc(100vh - 64px);
   background: url(../img/header-background.png);
   background-size: cover;
   background-position: 65% 0%;
   color: #fff;
-  text-align: left;
-  padding-top: 64px; }
+  text-align: left; }
   #landing-header article {
     max-width: 300px; }
     #landing-header article h2 {

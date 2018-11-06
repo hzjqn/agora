@@ -4,7 +4,7 @@
     $tituloPagina = "Ágora | Iniciar Sesion"; // Esta variable cambia el titulo de la pagina
     
     if(isset($_SESSION['user']) && $_SESSION != null){
-        header('Location: ./index.php');
+        redirect('./');
         session_destroy();
         exit;
     }

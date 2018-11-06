@@ -8,7 +8,7 @@
         private $host;
         private $charset;
 
-        public function __construct(string $dbname = 'agora', string $dbuser = 'root', string $dbpassword = 'root', string $host = 'localhost', string $charset = 'utf8mb4'){
+        public function __construct(string $dbname = 'agora_db', string $dbuser = 'root', string $dbpassword = 'root', string $host = 'localhost', string $charset = 'utf8mb4'){
             $this->dbname = $dbname;
             $this->dbuser = $dbuser;
             $this->dbpassword = $dbpassword;
@@ -52,10 +52,12 @@
                 $user = new User($result['username'], $result['password'], $result['email'],$result['name'], $result['lastname'], $result['profilePhoto'], $result['id']);
                 return $user;
             } else {
-                return false;
+                var_dump($result);
+                return null;
             }
         }
-       
+
+        
         /**
          * Gets an array of User objects from this database
          */
@@ -84,7 +86,7 @@
             $lastname = $user['lastname'];
             
             // preparamos la query y la bindeamos a las variables correspondientes.
-            $query = $this->db->prepare('INSERT INTO `users`(`id`, `username`, `password`, `email`, `name`, `lastname`, `profilePhoto`, `joinedAt`, `lastUpdate`) VALUES (DEFAULT,:username,:pass,:email,:name,:lastname,null,now(),now())');
+            $query = $this->db->prepare('INSERT INTO `users`(`id`, `username`, `password`, `email`, `name`, `lastname`, `profilePhoto`, `created_at`, `updated_at`) VALUES (DEFAULT,:username,:pass,:email,:name,:lastname,null,now(),now())');
 
             // hacemos param binding
             $query->bindParam(':username', $username);
@@ -99,10 +101,10 @@
                 echo '<script language="javascript">';
                 echo 'alert("' . $e->getMessage() . '")';
                 echo '</script>';
-                return false;
+                return null;
             }
 
-            return true;
+            return $this->getUser($user['username']);
         }
         
         /**
@@ -120,7 +122,10 @@
                 echo '<script language="javascript">';
                 echo 'alert("' . $e->getMessage() . '")';
                 echo '</script>';
-                return false;
+                return null;
+            }
+            if($result == null){
+                return null;
             }
             return new User($result['username'], $result['password'], $result['email'], $result['name'], $result['lastname'], $result['profilePhoto'], $result['id']);   
         }
@@ -137,9 +142,9 @@
                 echo '<script language="javascript">';
                 echo 'alert("' . $e->getMessage() . '")';
                 echo '</script>';
-                return false;
+                return null;
             }
-            return new Article($result['id'], $result['title'], $result['content'], $result['author_id']);
+            return new Article($result['id'], $result['title'], $result['content'], $result['user_id']);
         }
         
         public function getAllArticles(){
@@ -152,20 +157,20 @@
                 echo '<script language="javascript">';
                 echo 'alert("' . $e->getMessage() . '")';
                 echo '</script>';
-                return false;
+                return null;
             }
             
             $return = [];
             
             foreach($result as $article){
-                $return[] = new Article($article['id'], $article['title'], $article['content'], $article['author_id']);
+                $return[] = new Article($article['id'], $article['title'], $article['content'], $article['user_id']);
             }
             
             return $return;
         }
         
         public function getAllArticlesByUser($authorId){
-            $query = $this->db->prepare('SELECT * FROM `articles` WHERE `author_id` LIKE :id');
+            $query = $this->db->prepare('SELECT * FROM `articles` WHERE `user_id` LIKE :id');
             $query->bindParam(':id', $authorId);
             try{
                 $query->execute();
@@ -174,48 +179,20 @@
                 echo '<script language="javascript">';
                 echo 'alert("' . $e->getMessage() . '")';
                 echo '</script>';
-                return false;
+                return null;
             }
             
             $return = [];
             
             foreach($result as $article){
-                $return[] = new Article($article['id'], $article['title'], $article['content'], $article['author_id']);
+                $return[] = new Article($article['id'], $article['title'], $article['content'], $article['user_id']);
             }
-            
+
+            if($result == null){
+                return null;
+            }
+
             return $return;
-        }
-        
-        public function createArticle(array $article){
-            
-            
-            // seteamos las variables con sus valores correspondientes.
-            $title = $article['title'];
-            $content = $article['content'];
-            $authorId = $article['authorId'];
-            
-            // preparamos la query y la bindeamos a las variables correspondientes.
-            $query = $this->db->prepare('
-            INSERT INTO `articles`(`id`, `title`, `content`, `author_id`, `created_at`, `updated_at`) 
-            VALUES (DEFAULT,:title,:content,:authorId,now(),now());');
-            
-            // hacemos param binding
-            $query->bindParam(':title', $title);
-            $query->bindParam(':content', $content);
-            $query->bindParam(':authorId', $authorId);
-            
-            try{
-                $query->execute();
-                $result = $query->fetchAll(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {                
-                echo '<script language="javascript">';
-                echo 'alert("' . $e->getMessage() . '")';
-                echo '</script>';
-                return false;
-            }
-            $newArticle = $this->getArticle($this->db->lastInsertId());
-            var_dump($newArticle);           
-            return $newArticle;
         }
         
         /**
@@ -241,10 +218,169 @@
             return true;
         }
         
+        public function createArticle(array $article){
+            
+            
+            // seteamos las variables con sus valores correspondientes.
+            $title = $article['title'];
+            $content = $article['content'];
+            $authorId = $article['authorId'];
+            
+            // preparamos la query y la bindeamos a las variables correspondientes.
+            $query = $this->db->prepare('
+            INSERT INTO `articles`(`id`, `title`, `content`, `user_id`, `created_at`, `updated_at`) 
+            VALUES (DEFAULT,:title,:content,:authorId,now(),now());');
+            
+            // hacemos param binding
+            $query->bindParam(':title', $title);
+            $query->bindParam(':content', $content);
+            $query->bindParam(':authorId', $authorId);
+            
+            try{
+                $query->execute();
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {                
+                echo '<script language="javascript">';
+                echo 'alert("' . $e->getMessage() . '")';
+                echo '</script>';
+                return null;
+            }
+            $newArticle = $this->getArticle($this->db->lastInsertId());
+            var_dump($newArticle);           
+            return $newArticle;
+        }
+        
         public function changeArticle(int $articleId, ...$changes){
 
         }
         public function deleteArticle(int $userId){
+
+        }
+
+        
+        
+        public function getComment(int $id){
+
+            $query = $this->db->prepare('SELECT * FROM `comments` WHERE `id` = :id');
+            $query->bindParam(':id', $id);
+            try{
+                $query->execute();
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            } catch(PDOException $e){
+                echo '<script language="javascript">';
+                echo 'alert("' . $e->getMessage() . '")';
+                echo '</script>';
+                return null;
+            }
+            
+            if($result == null){
+                return null;
+            }
+
+            return new Comment($result[0]['id'], $result[0]['article_id'],$result[0]['user_id'],$result[0]['created_at'],$result[0]['updated_at'],$result[0]['content']);
+        }
+        
+        
+        public function getAllCommentsOnArticle($article_id){
+            $query = $this->db->prepare('SELECT * FROM `comments` WHERE `article_id` LIKE :id');
+            $query->bindParam(':id', $article_id);
+            try{
+                $query->execute();
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo '<script language="javascript">';
+                echo 'alert("' . $e->getMessage() . '")';
+                echo '</script>';
+                return null;
+            }
+            
+            $return = [];
+            
+            foreach($result as $comment){
+                $return[] = new Comment($comment['id'], $comment['article_id'], $comment['user_id'], $comment['created_at'], $comment['updated_at'], $comment['content']);
+            }
+            
+            return $return;
+        }
+
+        public function getAllComments(){
+            $query = $this->db->prepare('SELECT * FROM `comments`');
+            try{
+                $query->execute();
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            } catch (PDOException $e) {
+                echo '<script language="javascript">';
+                echo 'alert("' . $e->getMessage() . '")';
+                echo '</script>';
+                return null;
+            }
+            
+            $return = [];
+            
+            foreach($result as $comment){
+                $return[] = new Comment($comment['id'], $comment['title'], $comment['content'], $comment['user_id']);
+            }
+            
+            return $return;
+        }
+        
+        public function getAllCommentsByUser($authorId){
+            $query = $this->db->prepare('SELECT * FROM `comments` WHERE `user_id` LIKE :id');
+            $query->bindParam(':id', $authorId);
+            try{
+                $query->execute();
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo '<script language="javascript">';
+                echo 'alert("' . $e->getMessage() . '")';
+                echo '</script>';
+                return null;
+            }
+            
+            $return = [];
+            
+            foreach($result as $comment){
+                $return[] = new Comment($comment['id'], $comment['title'], $comment['content'], $comment['user_id']);
+            }
+            
+            return $return;
+        }
+        
+        public function createComment(array $comment){
+            
+            // seteamos las variables con sus valores correspondientes.
+            $content = $comment['comment_content'];
+            $user_id = $comment['comment_user_id'];
+            $article_id = $comment['comment_article_id'];
+            
+            // preparamos la query y la bindeamos a las variables correspondientes.
+            $query = $this->db->prepare('
+            INSERT INTO `comments`(`id`, `user_id`, `content`, `article_id`, `created_at`, `updated_at`) 
+            VALUES (DEFAULT,:user_id,:content,:article_id,now(),now());');
+            
+            // hacemos param binding
+            $query->bindParam(':user_id', $user_id);
+            $query->bindParam(':content', $content);
+            $query->bindParam(':article_id', $article_id);
+            
+            try{
+                $query->execute();
+                $result = $query->fetchAll(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {                
+                echo '<script language="javascript">';
+                echo 'alert("' . $e->getMessage() . '")';
+                echo '</script>';
+                return null;
+            }
+            $newComment = $this->getComment($this->db->lastInsertId());
+            return $newComment;
+        }
+        
+        public function changeComment(int $commentId, ...$changes){
+
+        }
+        public function deleteComment(int $userId){
 
         }
     }

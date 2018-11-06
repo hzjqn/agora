@@ -34,7 +34,9 @@
     <?php } else { 
         $user = $db->getUserById($_SESSION['user']->getId()); ?>
         <div class="ml-auto">
-            <a href="profile.php"><h2><?= $user->getUsername() ?></h2></a><img class="navbar-pp" src="img/<?= $user->getProfilePhoto()."pp.png" ?>" alt="asdf"><form method="post"><button type="submit" name="logout" value="true" ><i class="fas fa-sign-out-alt"></i></button></form>
+            <a href="profile.php"><h2><?= $user->getUsername() ?></h2></a><img class="navbar-pp" src="img/<?= $user->getProfilePhoto()."pp.png" ?>" alt="asdf">
+            <a class="toolbar-btn" href="./new_article.php"><i class="fas fa-pencil-alt"></i></i></a>
+            <form method="post"><button type="submit" name="logout" value="true" class="toolbar-btn"><i class="fas fa-sign-out-alt"></i></button></form>
         </div>
     <?php } ?>
     </div>

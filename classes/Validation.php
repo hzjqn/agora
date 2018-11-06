@@ -108,5 +108,9 @@
                 return false;
             }
         }
+
+        public static function validateComment($comment){
+            return false;
+        }
     }
 ?>

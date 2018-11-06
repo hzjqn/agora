@@ -33,6 +33,7 @@ body{
 	background: $_white;
     font-family: 'Open Sans', sans-serif;
     color: $_black;
+    padding-top: 64px 
 }
 
 // Links globales
@@ -136,33 +137,33 @@ h1.logo{
     form{
         display: inline;
         vertical-align: middle;
-        button{
-            margin: 0px 0px 0px .5em;
-            display: inline;
-            background: transparent;
-            color: $_mainc;
-            border: none;
-            border-radius: 100%;
-            padding: .5em .5em;
-            transition: background .25s;
-            padding: 0px;
+    }
+    .toolbar-btn{
+        margin: 0px 0px 0px .5em;
+        display: inline-block;
+        background: transparent;
+        color: $_mainc;
+        border: none;
+        border-radius: 100%;
+        padding: .5em .5em;
+        transition: background .25s;
+        padding: 0px;
 
-            i{
-                display: block;
-                padding: 15px;
-                font-size: 18px;
-                display: block;
-            }
-            outline: none;
+        i{
+            display: block;
+            padding: 15px;
+            font-size: 18px;
+            display: block;
+        }
+        outline: none;
 
-            &:hover, &:focus{
-                background: darken($color: white, $amount: 5)
-            }
+        &:hover, &:focus{
+            background: darken($color: white, $amount: 5)
+        }
 
-            &:active{
-                
-                background: darken($color: white, $amount: 15)
-            }
+        &:active{
+            
+            background: darken($color: white, $amount: 15)
         }
     }
 
@@ -195,10 +196,34 @@ h1.logo{
 
 // Estilos globales para las secciones
 section{
-    padding: 64px 0px;
+    padding: 0px 0px;
 }
 
 // Estilos especificos de cada seccion
+
+aside#autor{
+    padding: 3em 2em;
+}
+
+#article{
+    .full-view-article{
+        padding: 3em 0em;
+        text-align: left;
+        width: 100%;
+        
+        h2{
+            font-family: 'PT Serif', serif;
+            text-transform: capitalize;
+            font-weight: 600;
+            font-size: 2.5em;
+        }
+        h3{
+            font-family: 'PT Serif', serif;
+            font-size: 2em;
+        }
+    }
+}
+
 #login, #register{
     padding: 128px 0px;
     background: url(../img/login-background.jpg);
@@ -314,22 +339,16 @@ section{
     }
 }
 
-.full-view-article{
-    padding: 1em;
-    min-height: 50vh;
-}
-
 #landing-header{
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    height: calc(100vh - 64px);
     background: url(../img/header-background.png);
     background-size: cover;
     background-position: 65% 0%;
     color: $_white;
     text-align: left;
-    padding-top: 64px;
 
     article{
         max-width: 300px;

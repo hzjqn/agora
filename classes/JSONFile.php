@@ -3,6 +3,7 @@
     {
         private $usersPath = ('users.json');
         private $articlesPath = ('articles.json');
+        private $commentsPath = ('comments.json');
 
         public function __construct(){
         }
@@ -71,7 +72,7 @@
                     }
                 }
             }
-            return false;
+            return null;
         }
 
         
@@ -87,7 +88,7 @@
                     }
                 }
             }
-            return false;   
+            return null;   
         }
 
         /**
@@ -98,7 +99,7 @@
             if(isset($file['users']) && !empty($file['users'])){
                 return $file['users'];
             }
-            return false;
+            return null;
         }
 
         /**
@@ -119,7 +120,23 @@
                 $file['users'][] = $user;
             }
             file_put_contents($this->usersPath,json_encode($file));
-            return true;
+            return $this->getUser($user['username']);
+        }
+
+        
+        public function createUserFromObject(User $user){
+            $file = json_decode(file_get_contents($this->usersPath), true);
+
+            if(isset($file['users'])){
+                var_dump($file, $user);
+                $file['users'][] = $user;
+            } else {
+                $file = ['users'=>[]];
+                $file['users'][] = $user;
+            }
+
+            file_put_contents($this->usersPath,json_encode($file));
+            return $user;
         }
 
         /**
@@ -163,7 +180,7 @@
                     }
                 }
             }
-            return false;
+            return null;
         }
         
         public function getAllArticles(){
@@ -174,7 +191,7 @@
                 }
                 return $allArticles;
             }
-            return false;
+            return null;
         }
 
         public function getAllArticlesByUser($authorId){
@@ -211,11 +228,113 @@
             return $newArticle;
         }
 
+        public function createArticleFromObject(Article $article){
+            $file = json_decode(file_get_contents($this->articlesPath), true);
+
+            if(isset($file['articles'])){
+                var_dump($file, $article);
+                $file['articles'][] = $article;
+            } else {
+                $file = ['articles'=>[]];
+                $file['articles'][] = $article;
+            }
+
+            file_put_contents($this->articlesPath,json_encode($file));
+            return $article;
+        }
+
         public function changeArticle(int $articleId, ...$changes){
 
         }
 
-        public function deleteArticle(int $userId){
+        public function deleteArticle(int $ArticleId){
+            
+        }
+
+        public function getComment(int $id){            
+            $file = json_decode(file_get_contents($this->articlesPath), true);
+            if(isset($file['comments'])){
+                foreach($file['comments'] as $comment){
+                    if($id === $comment['id']){
+                        return new Comment($comment['id'],$comment['title'],$comment['content'],$comment['authorId']);
+                    }
+                }
+            }
+            return null;
+        }
+        
+        public function getAllComments(){
+            $file = json_decode(file_get_contents($this->commentsPath), true);
+            if(isset($file['comments']) && !empty($file['comments'])){
+                foreach ($file['comments'] as $comment){
+                    $allComments[] = new Comment($comment['id'], $comment['title'], $comment['content'], $comment['authorId']);
+                }
+                return $allComments;
+            }
+            return null;
+        }
+
+        public function getAllCommentsOnArticle($comment_id){
+            $file = json_decode(file_get_contents($this->commentsPath), true);
+            if(isset($file['comments']) && !empty($file['comments'])){
+                foreach ($file['comments'] as $comment){
+                    $allComments[] = new Comment($comment['id'], $comment['title'], $comment['content'], $comment['authorId']);
+                }
+                return $allComments;
+            }
+            return null;
+        }
+
+        public function getAllCommentsByUser($authorId){
+            $file = json_decode(file_get_contents($this->commentsPath), true);
+            $comments = [];
+            if(isset($file['comments'])){
+                foreach($file['comments'] as $comment){
+                    if($authorId === $comment['authorId']){
+                        $comments[] = new Comment($comment['id'],$comment['title'],$comment['content'],$comment['authorId']);
+                    }
+                }
+            }
+            
+            return $comments;
+        }
+
+        public function createComment(array $comment){
+            $file = json_decode(file_get_contents($this->commentsPath), true);
+
+            $comment['coverPhoto'] = null;
+            $comment['id'] = $this->newPostId();
+
+            if(isset($file['comments'])){
+                var_dump($file, $comment);
+                $file['comments'][] = $comment;
+            } else {
+                $file = ['comments'=>[]];
+                $file['comments'][] = $comment;
+            }
+            
+            $newComment = new Comment($comment['id'], $comment['title'],$comment['content'],$comment['authorId']);
+
+            file_put_contents($this->commentsPath,json_encode($file));
+            return $newComment;
+        }
+
+        public function createCommentFromObject(Comment $comment){
+            $file = json_decode(file_get_contents($this->commentsPath), true);
+
+            if(isset($file['comments'])){
+                var_dump($file, $comment);
+                $file['comments'][] = $comment;
+            } else {
+                $file = ['comments'=>[]];
+                $file['comments'][] = $comment;
+            }
+
+            file_put_contents($this->commentsPath,json_encode($file));
+            return $comment;
+        }
+
+        public function deleteComment(int $commentId){
             
         }
     }

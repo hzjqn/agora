@@ -1,5 +1,11 @@
 <?php
     require_once './fn.php';
+
+    if(!isset($_SESSION['user']) || $_SESSION == null){
+        redirect('./');
+        session_destroy();
+        exit;
+    }
     
     $tituloPagina = "Ágora: Explora. Expresa. Se parte"; // Esta variable cambia el titulo de la pagina
     
@@ -30,6 +36,7 @@
         <section id="features" class="content-wall">
             <form action="" method="post">
                 <label for="name">Titulo</label>
+                <input style="display:none; visibility: hidden" type="number" name="authorId" placeholder="Titulo" value="<?= $_SESSION['user']->getId() ?>">
                 <input class="<?= isset($errors['title']) ? 'error' : ''?>" type="text" name="title" placeholder="Titulo" value="<?= old('title') ?>">
                 <?= isset($errors['title']) ? "<span class='error-span'>".$errors['title']."</span>" : ''?>
                 <label for="name">Contenido</label>

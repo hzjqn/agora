@@ -17,13 +17,22 @@
     <?php include("./navbar.php");?>
     <header id="landing-header">
         <div class="container">
-            <section id="start">    
-                <article>
+            <div class="row">
+                <div class="col-12 col-md-6 col-md-offset-end-12">
                     <h2>
                         <strong>Ágora</strong> es una <strong>red social</strong> donde cualquiera puede encontrar un canal para <strong>expresar</strong> sus opiniones. 
                     </h2>
-                </article>
-            </section>
+                </div>
+            </div>
+            <div class="row">
+                <aside class="col-12 col-md-6 col-md-offset-end-12">
+                        <h3>
+                            Unete a Ágora y comparte tu historia.
+                        </h3>
+                        <a class="mt-4" href="register.php">Registrarse</a> | 
+                        <a class="mt-4" href="login.php">Iniciar Sesión</a>
+                </aside>
+            </div>
         </div>
     </header>
     <main>
